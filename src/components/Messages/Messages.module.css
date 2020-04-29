@@ -1,0 +1,11 @@
+.messages {
+	display: grid;
+	grid-template-columns: 0.3fr 1fr;
+	grid-template-rows: auto;
+	grid-gap: 40px;
+	margin: 40px auto;
+	text-align: center;
+}
+.companion {
+	border-right: 1px solid antiquewhite;
+}

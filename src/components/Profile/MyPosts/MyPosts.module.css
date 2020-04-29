@@ -1,0 +1,9 @@
+textarea {
+	width: 30%;
+	position: relative;
+}
+
+button {
+	position: absolute;
+	margin: 10px auto auto 10px;
+}
