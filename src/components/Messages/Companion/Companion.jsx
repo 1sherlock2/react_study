@@ -10,7 +10,9 @@ const Companion = (props) => {
 		<div className={s.companions}>
 			<NavLink to={path} className={s.companions_items}>
 				<div className={s.companion}>
-					{props.name}
+					<p>
+						{props.name}
+					</p>
 				</div>
 			</NavLink>
 		</div>

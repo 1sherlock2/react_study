@@ -5,21 +5,30 @@ import Dialogs from "./Dialogs/Dialogs";
 
 
 const Messages = (props) => {
+	let companionsData = [
+		{id:1, name:"Sergey"},
+		{id:2, name:"Andrey"},
+		{id:3, name:"Askar"},
+		{id:4, name:"Muslim"},
+		{id:5, name:"Petr"},
+	];
+	let companionElements = companionsData.map(el => <Companion  id={el.id} name={el.name}/>);
+
+	let messagesData = [
+		{id:1, message:"first message"},
+		{id:2, message:"second message"},
+		{id:3, message:"third message"},
+		{id:4, message:"fourth message"},
+	]
+	let messageElements = messagesData.map(el => <Dialogs message={el.message} />)
+
 	return (
 		<div className={s.messages}>
 			<div className={s.companion}>
-				<Companion  name='Sergey' id='1'/>
-				<Companion  name='Andrey' id='2'/>
-				<Companion  name='Askar' id='3'/>
-				<Companion  name='Muslim' id='4'/>
-				<Companion  name='Petr' id='5'/>
+				{companionElements}
 			</div>
 			<div className={s.dialogs}>
-				<Dialogs message="first message" />
-				<Dialogs message="second message" />
-				<Dialogs message="third message" />
-				<Dialogs message="fourth message" />
-				<Dialogs message="five message" />
+				{messageElements}
 			</div>
 		</div>
 	)
