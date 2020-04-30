@@ -5,10 +5,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import state from "./redux/State";
 import {BrowserRouter} from "react-router-dom";
+import {addPost} from "./redux/State";
 
-ReactDOM.render(
-	<BrowserRouter>
-		<App	state={state} />
+
+	ReactDOM.render(
+		<BrowserRouter>
+			<App	state={state} addpost={addPost} />
 	</BrowserRouter>, document.getElementById('root'));
 
 

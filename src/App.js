@@ -20,7 +20,7 @@ const App = (props) => {
       <Header />
       <Navbar friendsData={props.state.friendsData}/>
       <div className="app_wrapper_content" >
-        <Route path="/profile" render={ () => <Profile postData={props.state.postData} />} />
+        <Route path="/profile" render={ () => <Profile postData={props.state.postData} addPost={props.addPost}/>} />
         <Route path="/messages" render={ () => <Messages messagesData={props.state.messagesData} />} />
         <Route path="/news" render={ () => <News  />} />
         <Route path="/music" render={ () => <Music  />} />
