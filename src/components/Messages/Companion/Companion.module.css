@@ -1,3 +1,6 @@
+.companions {
+	grid-area: c;
+}
 .companions_items  {
 	text-decoration: none;
 }
