@@ -1,0 +1,11 @@
+
+.nav_friend {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: auto;
+	width: 60px;
+}
+
+.nav_friend a{
+	width: 60px;
+}
