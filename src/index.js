@@ -1,10 +1,20 @@
 import React from 'react';
-import './index.css';
+import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
+import './index.css';
+import App from './App';
+import {BrowserRouter} from "react-router-dom";
+import {addPost, subscribe, textareaChanges} from "./redux/State";
 import state from "./redux/State";
-import {rerenderEntireTree} from "./Render";
 
-rerenderEntireTree(state);
+let rerenderEntireTree = () => {
+	ReactDOM.render(
+		<BrowserRouter>
+			<App state={state} addPost={addPost} currentText={textareaChanges}/>
+		</BrowserRouter>, document.getElementById('root'));
+}
 
+rerenderEntireTree(state)
+subscribe(rerenderEntireTree);
 
 serviceWorker.register();

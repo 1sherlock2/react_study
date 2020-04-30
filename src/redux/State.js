@@ -1,4 +1,6 @@
-import {rerenderEntireTree} from "../Render";
+
+let rerenderEntireTree;	// просто название
+
 
 let state = {
 	postData: {
@@ -31,19 +33,23 @@ let state = {
 	]
 }
 
-export let addPost = () => {
+export const addPost = () => {
 	let newMessage = {
 		id: 4,
 		message: state.postData.currentText,
 		likeCount: 1,
 	};
 	state.postData.posts.push(newMessage);
-	rerenderEntireTree(state)
+	rerenderEntireTree()														// rerenderEntireTree - просто название
 }
 
-export let textareaChanges = (newText) => {
+export const textareaChanges = (newText) => {
 	state.postData.currentText = (newText);
-	rerenderEntireTree(state)
+	rerenderEntireTree()														// rerenderEntireTree - просто название
+}
+
+export const subscribe = (observer) => {
+	rerenderEntireTree = observer;									// rerenderEntireTree - просто название
 }
 
 export default state;
