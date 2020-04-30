@@ -1,3 +1,4 @@
+import {rerenderEntireTree} from "../Render";
 
 let state = {
 	postData: [
@@ -28,13 +29,14 @@ let state = {
 }
 
 export let addPost = (postMessage) => {
-	debugger;
 	let newMessage = {
 		id: 4,
 		message: postMessage,
 		likeCount: 1,
 	};
 	state.postData.push(newMessage);
+	rerenderEntireTree(state)
 }
+// export	default rerenderEntireTree(state)
 
 export default state;
