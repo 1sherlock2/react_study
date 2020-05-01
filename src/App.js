@@ -21,7 +21,7 @@ const App = (props) => {
       <Navbar friendsData={props.state.friendsData}/>
       <div className="app_wrapper_content" >
         <Route path="/profile" render={ () => <Profile state={props.state} dispatch={props.dispatch}/>} />
-        <Route path="/messages" render={ () => <Messages messagesData={props.state.messagesData} />} />
+        <Route path="/messages" render={ () => <Messages state={props.state} dispatch={props.dispatch} />} />
         <Route path="/news" render={ () => <News  />} />
         <Route path="/music" render={ () => <Music  />} />
         <Route path="/settings" render={ () => <Settings  />} />

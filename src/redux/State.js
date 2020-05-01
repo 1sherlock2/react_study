@@ -1,6 +1,8 @@
 
 const ADD_POST = 'ADD-POST';
 const TEXTAREA_CHANGES = 'TEXTAREA-CHANGES';
+const ADD_MESSAGES = 'ADD_MESSAGES';
+const TEXTAREA_CHANGES_MESSAGES = "TEXTAREA_CHANGES_MESSAGES";
 
 let store = {
 	_state: {
@@ -26,6 +28,7 @@ let store = {
 				{id: 3, message: "third message"},
 				{id: 4, message: "fourth message"},
 			],
+			currentDialogsData: '',
 		},
 		friendsData: [
 			{id: 1, name: "friend 1", avatar: ""},
@@ -58,6 +61,30 @@ let store = {
 			this._state.postData.currentText = action.newText;
 			this._callSubscriber(this._state)
 		}
+		if (action.type == ADD_MESSAGES) {
+			let newMessage = {
+				id:5,
+				message:this._state.messagesData.currentDialogsData,
+			};
+			this._state.messagesData.dialogsData.push(newMessage);
+			this._callSubscriber(this._state);
+		} else if (action.type == TEXTAREA_CHANGES_MESSAGES) {
+			this._state.messagesData.currentDialogsData = action.newText;
+			this._callSubscriber(this._state);
+		}
+	}
+}
+
+export const textareaChangesInMessagesActionCreator = (text) => {
+	return {
+		type: TEXTAREA_CHANGES_MESSAGES,
+		newText: text,
+	}
+}
+
+export const addMessagesActionCreator = () => {
+	return {
+		type: ADD_MESSAGES,
 	}
 }
 
