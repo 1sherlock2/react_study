@@ -11,7 +11,7 @@ const Messages = (props) => {
 	let newMessages = React.createRef();
 	let addMessages = () => {
 		let text = newMessages.current.value;
-		alert(text);
+
 	}
 
 	return (
@@ -23,7 +23,7 @@ const Messages = (props) => {
 				{messageElements}
 			</div>
 			<div className={s.messagesAdd}>
-				<textarea ref={newMessages}></textarea>
+				<textarea  ref={newMessages}></textarea>
 				<button onClick={addMessages}>Add </button>
 			</div>
 		</div>

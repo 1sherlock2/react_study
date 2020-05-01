@@ -1,3 +1,7 @@
+
+const ADD_POST = 'ADD-POST';
+const TEXTAREA_CHANGES = 'TEXTAREA-CHANGES';
+
 let store = {
 	_state: {
 		postData: {
@@ -42,7 +46,7 @@ let store = {
 	},
 
 	dispatch(action) {																																																		// {action.type == "ADD-POST"}
-		if (action.type == "ADD-POST") {
+		if (action.type == ADD_POST) {
 			let newMessage = {
 				id: 4,
 				message: this._state.postData.currentText,
@@ -50,12 +54,28 @@ let store = {
 			};
 			this._state.postData.posts.push(newMessage);
 			this._callSubscriber(this._state);
-		} else if (action.type == "TEXTAREA-CHANGES") {
+		} else if (action.type == TEXTAREA_CHANGES) {
 			this._state.postData.currentText = action.newText;
 			this._callSubscriber(this._state)
 		}
 	}
 }
+
+export const addPostActionCreator = () => {
+	return {
+		type: ADD_POST,
+	}
+};
+
+export const textareaChangesActionCreator = (text) => {
+	return {
+		type: TEXTAREA_CHANGES,
+		newText: text,
+	}
+}
+
+
+
 
 export default store;
 window.store = store;
