@@ -30,32 +30,31 @@ let store = {
 		],
 	},
 
-	getState() {
-		return this._state;
-	},
-
 	_callSubscriber() {
 		console.log('i am rerender')
 	},
 
-	addPost() {
-		let newMessage = {
-			id: 4,
-			message: this._state.postData.currentText,
-			likeCount: 1,
-		};
-		this._state.postData.posts.push(newMessage);
-		this._callSubscriber(this._state);
+	getState() {
+		return this._state;
 	},
-
-	textareaChanges(newText) {
-		this._state.postData.currentText = (newText);
-		this._callSubscriber(this._state)														// rerenderEntireTree - просто название
-	},
-
 	subscribe(observer) {
 		this._callSubscriber = observer;									// rerenderEntireTree - просто название
 	},
+
+	dispatch(action) {																																																		// {action.type == "ADD-POST"}
+		if (action.type == "ADD-POST") {
+			let newMessage = {
+				id: 4,
+				message: this._state.postData.currentText,
+				likeCount: 1,
+			};
+			this._state.postData.posts.push(newMessage);
+			this._callSubscriber(this._state);
+		} else if (action.type == "TEXTAREA-CHANGES") {
+			this._state.postData.currentText = action.newText;
+			this._callSubscriber(this._state)
+		}
+	}
 }
 
 export default store;

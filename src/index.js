@@ -7,14 +7,14 @@ import {BrowserRouter} from "react-router-dom";
 
 import store from "./redux/State";
 
-let rerenderEntireTree = () => {
+let rerenderEntireTree = (state) => {																																										// создаем функцию, которая в качестве параметра будет передавать наши данные
 	ReactDOM.render(
 		<BrowserRouter>
-			<App state={store.getState()} addPost={store.addPost.bind(store)} currentText={store.textareaChanges.bind(store)}/>
+			<App state={state} dispatch={store.dispatch.bind(store)} />
 		</BrowserRouter>, document.getElementById('root'));
 }
 
-rerenderEntireTree(store.getState())
+rerenderEntireTree(store.getState())																																										// вызываем функцию, которая в качестве параметра будет передавать наши данные из _state (через метод getState(), так как наши данные являются инкапсулируемыми (скрытыми) от внешнего воздействия
 store.subscribe(rerenderEntireTree);
 
 serviceWorker.register();
