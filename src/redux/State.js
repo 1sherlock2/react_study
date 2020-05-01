@@ -37,18 +37,18 @@ let store = {
 		],
 	},
 
-	_callSubscriber() {
-		console.log('i am rerender')
+	_callSubscriber() {																						// передача измененных данных в методы 'callSubscriber' которая отслеживается
+																																// паттерном (observer)  в subscribe(observer). Та, в свою очередь, передается
+	},																														// через 'import store' в index.js и в качестве observer передается наша
+	subscribe(observer) {																					// callback-function (в качестве параметра которого передаются наши данные из '_state')
+		this._callSubscriber = observer;														// с построенным DOM-деревом. Все это для того, чтобы избежать цикличности.
 	},
 
 	getState() {
 		return this._state;
 	},
-	subscribe(observer) {
-		this._callSubscriber = observer;									// rerenderEntireTree - просто название
-	},
 
-	dispatch(action) {																																																		// {action.type == "ADD-POST"}
+	dispatch(action) {
 		if (action.type == ADD_POST) {
 			let newMessage = {
 				id: 4,
@@ -82,24 +82,16 @@ export const textareaChangesInMessagesActionCreator = (text) => {
 	}
 }
 
-export const addMessagesActionCreator = () => {
-	return {
-		type: ADD_MESSAGES,
-	}
-}
+export const addMessagesActionCreator = () => ({type: ADD_MESSAGES});
 
-export const addPostActionCreator = () => {
-	return {
-		type: ADD_POST,
-	}
-};
+export const addPostActionCreator = () => ({type: ADD_POST});
 
 export const textareaChangesActionCreator = (text) => {
 	return {
 		type: TEXTAREA_CHANGES,
 		newText: text,
 	}
-}
+};
 
 
 
