@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 
-import store from "./redux/State";
+import store from "./redux/Store";
 
 let rerenderEntireTree = (state) => {																																										// создаем функцию, которая в качестве параметра будет передавать наши данные
 	ReactDOM.render(

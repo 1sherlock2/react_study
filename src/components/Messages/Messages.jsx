@@ -2,7 +2,8 @@ import React from "react";
 import s from "./Messages.module.css";
 import Companion from "./Companion/Companion";
 import Dialogs from "./Dialogs/Dialogs";
-import {addMessagesActionCreator, textareaChangesInMessagesActionCreator} from "../../redux/State";
+import {addMessagesActionCreator, textareaChangesInMessagesActionCreator} from "../../redux/Messages_reducer";
+
 
 
 const Messages = (props) => {
