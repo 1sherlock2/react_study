@@ -12,9 +12,9 @@ import {BrowserRouter,Route} from "react-router-dom";
 
 
 const App = (props) => {
-  let friendsDataId = props.state.friendsData.map(el => el.id);
-  let friendsLink = `/friends/${friendsDataId}`;
-  let friends = props.state.friendsData.map(el => <Friends friendsData={props.state.friendsData} />);
+  // let friendsDataId = props.state.friendsData.map(el => el.id);
+  // let friendsLink = `/friends/${friendsDataId}`;
+  // let friends = props.state.friendsData.map(el => <Friends friendsData={props.state.friendsData} />);
   return (
     <div className='app_wrapper'>
       <Header />
@@ -25,7 +25,7 @@ const App = (props) => {
         <Route path="/news" render={ () => <News  />} />
         <Route path="/music" render={ () => <Music  />} />
         <Route path="/settings" render={ () => <Settings  />} />
-        <Route path={friendsLink} render={ () => friends} />
+        {/*<Route path={friendsLink} render={ () => friends} />*/}
       </div>
     </div>
   )

@@ -4,8 +4,7 @@ import * as serviceWorker from './serviceWorker';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-
-import store from "./redux/Store";
+import store from "./redux/redux_store/redux_store";
 
 let rerenderEntireTree = (state) => {																																										// создаем функцию, которая в качестве параметра будет передавать наши данные
 	ReactDOM.render(
@@ -15,6 +14,10 @@ let rerenderEntireTree = (state) => {																																										/
 }
 
 rerenderEntireTree(store.getState())																																										// вызываем функцию, которая в качестве параметра будет передавать наши данные из _state (через метод getState(), так как наши данные являются инкапсулируемыми (скрытыми) от внешнего воздействия
-store.subscribe(rerenderEntireTree);
+
+store.subscribe( () => {
+	let state = store.getState();
+	rerenderEntireTree(state);
+});
 
 serviceWorker.register();
