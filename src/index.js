@@ -5,11 +5,14 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import store from "./redux/redux_store/redux_store";
+import StoreContex from "./Store_contex/Store_contex";
 
 let rerenderEntireTree = (state) => {																																										// создаем функцию, которая в качестве параметра будет передавать наши данные
 	ReactDOM.render(
 		<BrowserRouter>
-			<App state={state} dispatch={store.dispatch.bind(store)} />
+			<StoreContex.Provider value={store}>
+			<App />
+			</StoreContex.Provider>
 		</BrowserRouter>, document.getElementById('root'));
 }
 

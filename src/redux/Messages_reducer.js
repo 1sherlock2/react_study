@@ -11,8 +11,7 @@ let initialState = {
 		{id: 5, name: "Petr"},
 	],
 		dialogsData: [
-		{id: 1, message: "first message"},
-
+		// {id: 1, message: "first message"},
 	],
 		currentDialogsData: '',
 };
@@ -41,10 +40,7 @@ export const addMessagesActionCreator = () => {
 	}
 };
 export const textareaChangesInMessagesActionCreator = (text) => {
-	return {
-		type: TEXTAREA_CHANGES_MESSAGES,
-		body: text,
-	}
+	return ({type: TEXTAREA_CHANGES_MESSAGES, body: text,});
 };
 
 

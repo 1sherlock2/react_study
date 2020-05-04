@@ -6,7 +6,7 @@ let initialState = {
 	posts: [
 
 	],
-		currentText: '',
+	currentText: '',
 };
 
 const profileReducer = (state = initialState,action) => {
