@@ -12,8 +12,8 @@ const Messages = (props) => {
 	let currentDialogsData = props.currentDialogsData;
 
 	let newMessages = React.createRef();
-	let onTextareaChangesInMessages = (e) => {
-		let text = e.target.value;
+	let onTextareaChangesInMessages = () => {
+		let text = newMessages.current.value;
 		props.textareaChangesInMessages(text);
 	};
 

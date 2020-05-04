@@ -19,10 +19,7 @@ let initialState = {
 const messagesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_MESSAGES:
-			let newMessage = {
-				id: 5,
-				message: state.currentDialogsData,
-			};
+			let newMessage = {id: 5, message: state.currentDialogsData,};
 			state.dialogsData.push(newMessage);
 			state.currentDialogsData = '';
 			return state;

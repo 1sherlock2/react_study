@@ -3,20 +3,14 @@ const ADD_POST = 'ADD-POST';
 const TEXTAREA_CHANGES = 'TEXTAREA-CHANGES';
 
 let initialState = {
-	posts: [
-
-	],
+	posts: [ ],
 	currentText: '',
 };
 
 const profileReducer = (state = initialState,action) => {
 	switch (action.type) {
 		case ADD_POST:
-			let newPost = {
-				id: 4,
-				message: state.currentText,
-				likeCount: 1,
-			}
+			let newPost = {id: 4, message: state.currentText, likeCount: 1,}
 			state.posts.push(newPost);
 			state.currentText = '';
 			return state;
