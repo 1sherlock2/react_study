@@ -4,19 +4,24 @@ const TEXTAREA_CHANGES = 'TEXTAREA-CHANGES';
 
 let initialState = {
 	posts: [ ],
-	currentText: '',
+	currentText: 'initialStateCurrentText',
 };
 
 const profileReducer = (state = initialState,action) => {
 	switch (action.type) {
 		case ADD_POST:
-			let newPost = {id: 4, message: state.currentText, likeCount: 1,}
-			state.posts.push(newPost);
-			state.currentText = '';
-			return state;
+			return {
+				...state,
+				posts: [...state.posts, {id: 4, message: state.currentText, likeCount: 1,}],
+				currentText: '',
+			}
+			// let newPost = {id: 4, message: state.currentText, likeCount: 1,}
+			// stateCopy.posts.push(newPost);
 		case TEXTAREA_CHANGES:
-			state.currentText = action.newPost;
-			return state;
+			return {
+				...state,
+				currentText: action.newPost,
+			}
 		default:
 			return state;
 	}

@@ -7,45 +7,21 @@ import {connect} from "react-redux";
 //  приходящих данных из базы данных (store). Обрабатываем наши данные через функции и прокидываем уже собранные воедино
 //  функции(которые обрабатывают наши данные) в наши компоненты с отрисовкой HTML тегов.
 
-// const MyPostsContainer = () => {
-//
-// 	return <StoreContex.Consumer>
-// 	{
-// 		store => {
-//
-// 			// let state = store.getState();
-//
-// 			let addPost = () => {
-// 				store.dispatch(addPostActionCreator());
-// 			};
-// 			let textareaChanges = (text) => {
-// 				let action = textareaChangesActionCreator(text);
-// 				store.dispatch(action);
-// 			};
-// 			return (<MyPosts addPost={addPost} textareaChanges={textareaChanges} posts={store.getState().postData} />
-// 											 // posts={state.postData.posts}
-// 											 // currentText={state.postData.currentText}/>
-// 			)
-// 		}
-// 	}
-// 	</StoreContex.Consumer>
-// }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state) => {												// благодаря 'mapStateToProps' наши данные приходят обратно в презентационные компоненты после обработки и изменении данных с помощью 'dispatch
 	return {
 		posts: state.postData.posts,
 		currentText: state.postData.currentText,
 	}
 };
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch) => {									// 'mapDispatchToProps' посылает данные для обработки в базу данных
 	return {
 		addPost: () => {
 			dispatch(addPostActionCreator())
 		},
 		textareaChanges: (text) => {
-			let action = textareaChangesActionCreator(text);
-			dispatch(action)
+			dispatch(textareaChangesActionCreator(text))
 		},
 	}
 }

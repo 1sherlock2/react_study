@@ -13,19 +13,24 @@ let initialState = {
 		dialogsData: [
 		// {id: 1, message: "first message"},
 	],
-		currentDialogsData: '',
+		currentDialogsData: 'initialStateCurrentDialogsData',
 };
 
 const messagesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_MESSAGES:
-			let newMessage = {id: 5, message: state.currentDialogsData,};
-			state.dialogsData.push(newMessage);
-			state.currentDialogsData = '';
-			return state;
+		return {
+				...state,
+				dialogsData: [...state.dialogsData,{id: 5, message: state.currentDialogsData,}],
+				currentDialogsData: '',
+			};
+			// let newMessage = {id: 5, message: state.currentDialogsData,};
+			// stateCopy.dialogsData.push(newMessage);
 		case TEXTAREA_CHANGES_MESSAGES:
-			state.currentDialogsData = action.body;
-			return state;
+			return {
+				...state,
+				currentDialogsData: action.body,
+			}
 		default:
 			return state;
 	}
