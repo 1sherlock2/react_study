@@ -6,7 +6,7 @@ import Profile from './components/Profile/Profile';
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {Route} from "react-router-dom";
-import MessagesContainer from "./components/Messages/Dialogs/MessagesContainer";
+import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import NewsContainer from "./components/News/NewsContainer";
 

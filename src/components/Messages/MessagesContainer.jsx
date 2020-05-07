@@ -1,6 +1,6 @@
 import React from "react";
-import Messages from "../Messages";
-import {addMessagesActionCreator, textareaChangesInMessagesActionCreator} from "../../../redux/Messages_reducer";
+import Messages from "./Messages_Class";
+import {addMessagesActionCreator, textareaChangesInMessagesActionCreator} from "../../redux/Messages_reducer";
 import {connect} from "react-redux";
 
 
