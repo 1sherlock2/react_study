@@ -10,10 +10,8 @@ let initialState = {
 		{id: 4, name: "Muslim"},
 		{id: 5, name: "Petr"},
 	],
-		dialogsData: [
-		// {id: 1, message: "first message"},
-	],
-		currentDialogsData: 'initialStateCurrentDialogsData',
+		dialogsData: [],
+		currentDialogsData: '',
 };
 
 const messagesReducer = (state = initialState, action) => {
@@ -24,8 +22,6 @@ const messagesReducer = (state = initialState, action) => {
 				dialogsData: [...state.dialogsData,{id: 5, message: state.currentDialogsData,}],
 				currentDialogsData: '',
 			};
-			// let newMessage = {id: 5, message: state.currentDialogsData,};
-			// stateCopy.dialogsData.push(newMessage);
 		case TEXTAREA_CHANGES_MESSAGES:
 			return {
 				...state,
@@ -36,14 +32,9 @@ const messagesReducer = (state = initialState, action) => {
 	}
 }
 
-export const addMessagesActionCreator = () => {
-	return {
-		type: ADD_MESSAGES,
-	}
-};
-export const textareaChangesInMessagesActionCreator = (text) => {
-	return ({type: TEXTAREA_CHANGES_MESSAGES, body: text,});
-};
+export const addMessagesActionCreator = () => ({type: ADD_MESSAGES,});
+
+export const textareaChangesInMessagesActionCreator = (text) => ({type: TEXTAREA_CHANGES_MESSAGES, body: text,});
 
 
 export default messagesReducer;

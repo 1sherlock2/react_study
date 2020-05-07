@@ -2,8 +2,6 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
-
-
 const MyPosts = (props) => {
   let messagesData = props.posts.map(el => <Post message={el.message} likesCount={el.likesCount} />);
 
@@ -14,7 +12,6 @@ const MyPosts = (props) => {
   let onAddPost = () => {
     props.addPost();
   };
-
   return (
     <div>
       My posts

@@ -6,15 +6,12 @@ import Dialogs from "./Dialogs/Dialogs";
 
 
 const Messages = (props) => {
-	let companionElements = props.companionsData.map(el => <Companion  id={el.id} name={el.name}/>);
-	let messageElements = props.dialogsData.map(el => <Dialogs message={el.message} />)
-
-	let currentDialogsData = props.currentDialogsData;
+	let companionElements = props.companionsData.map((el) => <Companion  id={el.id} name={el.name}/>);
+	let messageElements = props.dialogsData.map((el) => <Dialogs message={el.message} />)
 
 	let newMessages = React.createRef();
 	let onTextareaChangesInMessages = () => {
-		let text = newMessages.current.value;
-		props.textareaChangesInMessages(text);
+		props.textareaChangesInMessages(newMessages.current.value);
 	};
 
 	let onAddMessages = () => {
@@ -30,7 +27,7 @@ const Messages = (props) => {
 				{messageElements}
 			</div>
 			<div className={s.messagesAdd}>
-				<textarea onChange={onTextareaChangesInMessages} ref={newMessages} value={currentDialogsData} />
+				<textarea onChange={onTextareaChangesInMessages} ref={newMessages} value={props.currentDialogsData} />
 				<button onClick={onAddMessages}>Add </button>
 			</div>
 		</div>

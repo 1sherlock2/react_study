@@ -1,22 +1,24 @@
 const ADD_NEWS = "ADD_NEWS";
 const TEXTAREA_CHANGES_NEWSPOSTS = "TEXTAREA_CHANGES_NEWSPOSTS";
 
-let initilalState = {
-	newsPosts: [],
-	currentNewsData:[],
+let initialState = {
+	newsPosts: [{id:2, newsPost: "what is news?" }],
+	currentNewsData:'aSDASddas',
 };
 
-const newsReducer = (state = initilalState, action) => {
-	switch (action.type){
+const newsReducer = (state = initialState, action) => {
+	switch (action.type) {
 		case ADD_NEWS:
-		let newPosts = {
-			id: 1,
-			posts: state.currentNewsData,
-		}
-		state.newsPosts.push(newPosts);
-		state.newsPost = '';
+			return {
+				...state,
+				newsPosts: [...state.newsPosts, {id:3, newsPost: state.currentNewsData}],
+				currentNewsData: '',
+			}
 		case TEXTAREA_CHANGES_NEWSPOSTS:
-		state.currentNewsData = action;
+			return {
+				...state,
+				currentNewsData: action.text,
+			}
 		default:
 			return state;
 	}

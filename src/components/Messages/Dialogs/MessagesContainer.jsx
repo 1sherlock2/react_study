@@ -19,8 +19,7 @@ let mapDispatchToProps = (dispatch) => {
 		},
 
 		textareaChangesInMessages: (text) => {
-			let action = textareaChangesInMessagesActionCreator(text);
-			dispatch(action)
+			dispatch(textareaChangesInMessagesActionCreator(text))
 		}
 	}
 }
