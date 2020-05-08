@@ -2,19 +2,40 @@ import React from "react";
 import s from "./Users.module.css";
 import * as axios from "axios";
 import userPhoto from "./../../img/apa6.jpg";
+import {setTotalUsersCountAC} from "../../redux/Users_reducer";
 
 class Users extends React.Component {
 	constructor(props) {
 		super(props);
-			axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-				this.props.setUsers(response.data.items)
-			})
+	}
+	componentDidMount() {
+		axios.get(`https://social-network.samuraijs.com/api/1.0/users&page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+			this.props.setUsers(response.data.items)
+			this.props.setTotalUsersCount(response.data.totalCount)
+
+		})
+	}
+
+	onChangePages = (page,) => {
+		this.props.changeCurrentPage(page);
+		axios.get(`https://social-network.samuraijs.com/api/1.0/users&page=${page}&count=${this.props.pageSize}`).then(response => {
+			this.props.setUsers(response.data.items)
+		})
 	}
 
 	render() {
-		return (
-			<div className={s.users}>
-				<button> Get Users</button>
+		let pageCount = Math.ceil(this.props.totalCount / this.props.pageSize);
+		let pages = [];
+		 for (let i = 1; i <= pageCount; i++) {
+		 	pages.push(i);
+		 }
+		return <div className={s.users}>
+						<div className={s.cursor_pointer}>
+							{pages.map(el => {
+								return	<span onClick={ (e) => this.onChangePages(el)} className={this.props.currentPage === el ? s.page_selected : null}> { el } </span>
+							})}
+						</div>
+				{/*<button className={s.getUsers}> Get Users</button>*/}
 				{this.props.users.map( (el) =>
 					<div className={s.users_items} key={el.id}>
 						<div className={s.users_div}>
@@ -41,7 +62,7 @@ class Users extends React.Component {
 					</div>
 				)}
 			</div>
-		)
+
 	}
 }
 

@@ -5,6 +5,15 @@
 .users_items {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
+	margin-top: 50px;
+}
+
+
+.page_selected {
+	font-weight: bold;
+}
+.cursor_pointer:hover {
+	cursor: pointer;
 }
 
 .users_div {
@@ -16,6 +25,9 @@ span {
 	padding-top: 50px;
 }
 
+.getUsers {
+	margin-top: 30px;
+}
 .users_span_img {
 	margin: 5px auto 10px 175px;
 	border-radius: 10%;
