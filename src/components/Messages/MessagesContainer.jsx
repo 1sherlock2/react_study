@@ -1,6 +1,6 @@
 import React from "react";
 import Messages from "./Messages";
-import {addMessagesActionCreator, textareaChangesInMessagesActionCreator} from "../../redux/Messages_reducer";
+import {addMessages, textareaChangesInMessages} from "../../redux/Messages_reducer";
 import {connect} from "react-redux";
 
 
@@ -35,17 +35,17 @@ let mapStateToProps = (state) => {
 		currentDialogsData: state.messagesData.currentDialogsData,
 	}
 }
-let mapDispatchToProps = (dispatch) => {
-	return {
-		addMessages: () => {
-			dispatch(addMessagesActionCreator());
-		},
-		textareaChangesInMessages: (text) => {
-			dispatch(textareaChangesInMessagesActionCreator(text))
-		}
-	}
-}
+// let mapDispatchToProps = (dispatch) => {
+// 	return {
+// 		addMessages: () => {
+// 			dispatch(addMessagesActionCreator());
+// 		},
+// 		textareaChangesInMessages: (text) => {
+// 			dispatch(textareaChangesInMessagesActionCreator(text))
+// 		}
+// 	}
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessagesContainer)
+export default connect(mapStateToProps, {addMessages, textareaChangesInMessages})(MessagesContainer)
 
 

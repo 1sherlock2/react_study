@@ -24,7 +24,7 @@ const profileReducer = (state = initialState,action) => {
 	}
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const textareaChangesActionCreator = (text) => ({type: TEXTAREA_CHANGES, newPost: text,});
+export const addPost = () => ({type: ADD_POST});
+export const textareaChanges = (text) => ({type: TEXTAREA_CHANGES, newPost: text,});
 
 export default profileReducer;

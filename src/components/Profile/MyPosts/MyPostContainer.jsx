@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPostActionCreator, textareaChangesActionCreator} from "../../../redux/Profile_reducer";
+import {addPost, textareaChanges} from "../../../redux/Profile_reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
@@ -15,7 +15,7 @@ class MyPostContainer extends React.Component {
 		this.props.addPost();
 	}
 	render() {
-		return <MyPosts posts={this.props.post}
+		return <MyPosts posts={this.props.posts}
 										newPostElements={this.newPostElements}
 										currentText={this.props.currentText}
 										onTextareaChanges={this.onTextareaChanges}
@@ -30,16 +30,16 @@ let mapStateToProps = (state) => {												// благодаря 'mapStateToP
 	}
 };
 
-let mapDispatchToProps = (dispatch) => {									// 'mapDispatchToProps' посылает данные для обработки в базу данных
-	return {
-		addPost: () => {
-			dispatch(addPostActionCreator())
-		},
-		textareaChanges: (text) => {
-			dispatch(textareaChangesActionCreator(text))
-		},
-	}
-}
+// let mapDispatchToProps = (dispatch) => {									// 'mapDispatchToProps' посылает данные для обработки в базу данных
+// 	return {
+// 		addPost: () => {
+// 			dispatch(addPostActionCreator())
+// 		},
+// 		textareaChanges: (text) => {
+// 			dispatch(textareaChangesActionCreator(text))
+// 		},
+// 	}
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(MyPostContainer)
+export default connect(mapStateToProps,{addPost, textareaChanges})(MyPostContainer)
 

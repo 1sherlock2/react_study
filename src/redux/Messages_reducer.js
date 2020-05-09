@@ -32,9 +32,9 @@ const messagesReducer = (state = initialState, action) => {
 	}
 }
 
-export const addMessagesActionCreator = () => ({type: ADD_MESSAGES,});
+export const addMessages = () => ({type: ADD_MESSAGES,});
 
-export const textareaChangesInMessagesActionCreator = (text) => ({type: TEXTAREA_CHANGES_MESSAGES, body: text,});
+export const textareaChangesInMessages = (text) => ({type: TEXTAREA_CHANGES_MESSAGES, body: text,});
 
 
 export default messagesReducer;

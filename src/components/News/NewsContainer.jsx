@@ -1,5 +1,5 @@
 import React from "react";
-import {addNewsActionCreator, textareaChangesNewsPostActionCreator} from "../../redux/News_reducer";
+import {addNews, textareaChangesNewsPost} from "../../redux/News_reducer";
 import News from "./News";
 import {connect} from "react-redux";
 
@@ -34,16 +34,16 @@ let mapStateToProps = (state) => {
 	}
 }
 
-let mapDispatchToProps = (dispatch) => {
-	return {
-		addNews: () => {
-			dispatch(addNewsActionCreator())
-		},
-		textareaChangesNewsPost: (text) => {
-			dispatch(textareaChangesNewsPostActionCreator(text));
-		}
-	}
-}
+// let mapDispatchToProps = (dispatch) => {
+// 	return {
+// 		addNews: () => {
+// 			dispatch(addNewsActionCreator())
+// 		},
+// 		textareaChangesNewsPost: (text) => {
+// 			dispatch(textareaChangesNewsPostActionCreator(text));
+// 		}
+// 	}
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(NewsContainer)
+export default connect(mapStateToProps, {addNews,textareaChangesNewsPost})(NewsContainer)
 

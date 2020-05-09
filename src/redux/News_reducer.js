@@ -24,7 +24,7 @@ const newsReducer = (state = initialState, action) => {
 	}
 }
 
-export const addNewsActionCreator = () => ({type:ADD_NEWS});
-export const textareaChangesNewsPostActionCreator = (text) => ({type: TEXTAREA_CHANGES_NEWSPOSTS, text: text});
+export const addNews = () => ({type:ADD_NEWS});
+export const textareaChangesNewsPost = (text) => ({type: TEXTAREA_CHANGES_NEWSPOSTS, text: text});
 
 export default newsReducer;
