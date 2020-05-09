@@ -4,6 +4,29 @@ import News from "./News";
 import {connect} from "react-redux";
 
 
+class NewsContainer extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	 newsElement = React.createRef();
+	 onTextareaChangesNewsPost = () => {
+	 	let text = this.newsElement.current.value
+		this.props.textareaChangesNewsPost(text);
+	};
+	 onAddNews = () => {
+		this.props.addNews();
+	}
+	render() {
+	 	return <News newsPosts={this.props.newsPosts}
+								 newsElement={this.newsElement}
+								 onTextareaChangesNewsPost={this.onTextareaChangesNewsPost}
+								 onAddNews={this.onAddNews}
+								 currentNewsData={this.props.currentNewsData}
+		/>
+	}
+}
+
+
 let mapStateToProps = (state) => {
 	return {
 		newsPosts: state.newsData.newsPosts,
@@ -22,6 +45,5 @@ let mapDispatchToProps = (dispatch) => {
 	}
 }
 
-const NewsContainer = connect(mapStateToProps,mapDispatchToProps)(News)
+export default connect(mapStateToProps,mapDispatchToProps)(NewsContainer)
 
-export default NewsContainer;
