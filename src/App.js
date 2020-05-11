@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -9,6 +8,7 @@ import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import NewsContainer from "./components/News/NewsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
   // let friends = props.state.friendsData.map(el => <Friends friendsData={props.state.friendsData} />);
   return (
     <div className='app_wrapper'>
-      <Header />
+      <HeaderContainer />
       <Navbar />
       <div className="app_wrapper_content" >
         <Route path="/profile/:userId" render={ () => <ProfileContainer />} />
