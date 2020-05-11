@@ -7,8 +7,8 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
 	users: [	],
-	pageSize: 5,
-	totalCount: 20,
+	pageSize: 10,
+	totalCount: 25,
 	currentPage: 3,
 	isFetching: false,
 }
@@ -59,7 +59,7 @@ let usersReducer = (state = initialState, action) => {
 }
 
 
-export const changeCurrentPage = (page) => ({type: CHANGE_CURRENT_PAGE, page: page})
+export const changeCurrentPage = (page) => ({type: CHANGE_CURRENT_PAGE, page: page})	// call-back функция, которая возвращает объект, в параметрах которого мы передаем название действие, которое хотим совершить
 export const setUsers = (users) => ({type: SET_USERS, users: users});
 export const Follow = (userId) => ({type: FOLLOW, userId: userId});
 export const unFollow = (userId) => ({type: UN_FOLLOW, userId: userId});

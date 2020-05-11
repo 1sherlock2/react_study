@@ -1,21 +1,32 @@
 import React from 'react';
-import s from './Profile.module.css';
-import Profile_info from "./Profile_info/Profile_info";
-import MyPostsContainer from "./MyPosts/MyPostContainer";
+import Profile from "./Profile";
+import * as axios from "axios";
+import {setUserProfile, toggleIsFetchingLoad} from "../../redux/Profile_reducer";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class ProfileContainer extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  componentDidMount() {
+    this.props.toggleIsFetchingLoad(true);
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+      .then(response => {
+      this.props.toggleIsFetchingLoad(false);
+      this.props.setUserProfile(response.data)
+    })
+  }
   render() {
-    return (
-      <div className={s.profile}>
-        <Profile_info />
-        <MyPostsContainer />
-      </div>
-    )
+    return <Profile {...this.props} profile={this.props.profile} />
   }
 }
 
-export default ProfileContainer;
+let mapStateToProps = (state) => ({
+  profile: state.postData.profile,
+  isFetching: state.postData.isFetching,
+})
+
+let UrlWithRouter = withRouter(ProfileContainer)
+
+export default connect(mapStateToProps,{setUserProfile,toggleIsFetchingLoad})(UrlWithRouter)
