@@ -6,9 +6,9 @@ const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
-	users: [	],
+	users: [],
 	pageSize: 10,
-	totalCount: 25,
+	totalCount: 0,
 	currentPage: 3,
 	isFetching: false,
 }
@@ -25,8 +25,9 @@ let usersReducer = (state = initialState, action) => {
 				...state,
 				users: state.users.map((el) => {
 					if (el.id === action.userId) {
-						return {...el, followed: true}
+						return {...el, followed: false}
 					}
+					return el
 				})
 			}
 		case UN_FOLLOW:
@@ -34,8 +35,9 @@ let usersReducer = (state = initialState, action) => {
 				...state,
 				users: state.users.map((el) => {
 					if (el.id === action.userId) {
-						return {...el, followed: false}
+						return {...el, followed: true}
 					}
+					return el
 				})
 			}
 		case CHANGE_CURRENT_PAGE:

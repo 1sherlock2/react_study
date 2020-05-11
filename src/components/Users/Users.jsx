@@ -30,7 +30,7 @@ const Users = (props) => {
 							}
 						</span>
 						<span className={s.users_span}>
-							<NavLink to={`/profile${el.id}`}>
+							<NavLink to={`/profile/${el.id}`}>
 								<img className={s.users_span_img} src={el.photos.small != null ? el.photos.small : userPhoto} />
 							</NavLink>
 							</span>
