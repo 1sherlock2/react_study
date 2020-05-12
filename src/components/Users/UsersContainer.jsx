@@ -18,7 +18,12 @@ class UsersContainer extends React.Component {
 	}
 	componentDidMount() {
 		this.props.toggleIsFetching(true);
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
+			withCredentials: true,
+			headers: {
+				'API-KEY': 'd3e184b5-2525-4316-8fdb-e696fcf93fc5',
+			},
+		}).then(response => {
 			this.props.toggleIsFetching(false)
 			this.props.setUsers(response.data.items)
 			this.props.setTotalUsersCount(response.data.totalCount)
@@ -28,7 +33,12 @@ class UsersContainer extends React.Component {
 	onChangePages = (page) => {
 		this.props.changeCurrentPage(page);
 		this.props.toggleIsFetching(true);
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`).then(response => {
+		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`, {
+			withCredentials: true,
+			headers: {
+				'API-KEY': 'd3e184b5-2525-4316-8fdb-e696fcf93fc5',
+			},
+		}).then(response => {
 			this.props.toggleIsFetching(false);
 			this.props.setUsers(response.data.items)
 		})
