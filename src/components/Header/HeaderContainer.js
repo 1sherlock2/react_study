@@ -3,6 +3,7 @@ import Header from "./Header";
 import {setUserData} from "../../redux/Auth_reducer";
 import {connect} from "react-redux";
 import * as axios from "axios";
+import {userAPI} from "../../API/API";
 
 
 class HeaderContainer extends React.Component {
@@ -11,12 +12,11 @@ class HeaderContainer extends React.Component {
 	}
 
 	componentDidMount() {
-		axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{withCredentials:true})
-			.then(response => {
-				if (response.data.resultCode === 0) {
-					let {email, id, login} = response.data.data;
-					this.props.setUserData(id, email, login);
-				}
+		userAPI.usersAuthFromServer().then(data => {
+			if (data.resultCode === 0) {
+				let {email, id, login} = data.data;
+				this.props.setUserData(id, email, login);
+			}
 		})
 	}
 

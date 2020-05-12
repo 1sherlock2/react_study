@@ -12,9 +12,6 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 const App = () => {
-  // let friendsDataId = props.state.friendsData.map(el => el.id);
-  // let friendsLink = `/friends/${friendsDataId}`;
-  // let friends = props.state.friendsData.map(el => <Friends friendsData={props.state.friendsData} />);
   return (
     <div className='app_wrapper'>
       <HeaderContainer />
