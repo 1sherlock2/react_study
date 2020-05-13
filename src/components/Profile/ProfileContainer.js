@@ -4,6 +4,7 @@ import * as axios from "axios";
 import {setUserProfile, toggleIsFetchingLoad} from "../../redux/Profile_reducer";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {userAPI} from "../../API/API";
 
 class ProfileContainer extends React.Component {
   constructor(props) {
@@ -15,10 +16,10 @@ class ProfileContainer extends React.Component {
       userId = 7936;
     }
     this.props.toggleIsFetchingLoad(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-      .then(response => {
+    userAPI.profileFromServer(userId)
+      .then(data => {
       this.props.toggleIsFetchingLoad(false);
-      this.props.setUserProfile(response.data)
+      this.props.setUserProfile(data)
     })
   }
   render() {
