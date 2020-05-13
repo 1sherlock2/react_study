@@ -27,7 +27,17 @@ export const userAPI = {
 	},
 	profileFromServer(userId) {
 		return instance.get(`profile/${userId}`).then(response => {
-				return response.data
+				return response.data;
+		})
+	},
+	buttonFollowPostFromServer(id) {
+		return instance.post(`follow/${id}`).then(response => {
+			return response.data;
+		})
+	},
+	buttonUnFollowDeleteFromServer(id) {
+		return instance.delete(`follow/${id}`).then(response => {
+			return response.data;
 		})
 	}
 }
