@@ -23,7 +23,6 @@ const App = () => {
         <Route path="/news" render={ () => <NewsContainer />} />
         <Route path="/music" render={ () => <Music  />} />
         <Route path="/settings" render={ () => <Settings  />} />
-        {/*<Route path={friendsLink} render={ () => friends} />*/}
       </div>
     </div>
   )

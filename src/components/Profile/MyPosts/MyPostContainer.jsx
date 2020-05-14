@@ -30,16 +30,5 @@ let mapStateToProps = (state) => {												// благодаря 'mapStateToP
 	}
 };
 
-// let mapDispatchToProps = (dispatch) => {									// 'mapDispatchToProps' посылает данные для обработки в базу данных
-// 	return {
-// 		addPost: () => {
-// 			dispatch(addPostActionCreator())
-// 		},
-// 		textareaChanges: (text) => {
-// 			dispatch(textareaChangesActionCreator(text))
-// 		},
-// 	}
-// }
-
 export default connect(mapStateToProps,{addPost, textareaChanges})(MyPostContainer)
 

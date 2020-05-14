@@ -4,7 +4,6 @@ import userPhoto from "../../img/apa6.jpg";
 import * as axios from "axios";
 import {NavLink} from "react-router-dom";
 import {userAPI} from "../../API/API";
-import {toggleIsFollowingProgress} from "../../redux/Users_reducer";
 
 
 const Users = (props) => {

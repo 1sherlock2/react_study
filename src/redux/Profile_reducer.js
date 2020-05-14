@@ -4,7 +4,7 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
-	posts: [ ],
+	posts: [],
 	currentText: 'initialStateCurrentText',
 	profile: null,
 	isFetching:false,
@@ -15,7 +15,7 @@ const profileReducer = (state = initialState,action) => {
 		case ADD_POST:
 			return {
 				...state,
-				posts: [...state.posts, {id: 4, message: state.currentText, likeCount: 1,}],
+				posts: [...state.posts, {id: 4, message: state.currentText, likeCount: 1, photo: state.profile.photos.small}],
 				currentText: '',
 			}
 		case TEXTAREA_CHANGES:
@@ -42,5 +42,7 @@ export const addPost = () => ({type: ADD_POST});
 export const textareaChanges = (text) => ({type: TEXTAREA_CHANGES, newPost: text,});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile});
 export const toggleIsFetchingLoad = (isFetching) => ({type:TOGGLE_IS_FETCHING, isFetching: isFetching});
+
+
 
 export default profileReducer;

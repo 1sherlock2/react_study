@@ -16,12 +16,12 @@ class ProfileContainer extends React.Component {
       userId = 7936;
     }
     this.props.toggleIsFetchingLoad(true);
-    userAPI.profileFromServer(userId)
-      .then(data => {
+    userAPI.profileFromServer(userId).then(data => {
       this.props.toggleIsFetchingLoad(false);
       this.props.setUserProfile(data)
     })
   }
+
   render() {
     return <Profile {...this.props} profile={this.props.profile} />
   }

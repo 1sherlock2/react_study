@@ -3,7 +3,7 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-  let messagesData = props.posts.map(el => <Post message={el.message} likesCount={el.likesCount} />);
+  let messagesData = props.posts.map(el => <Post photo={el.photo}  message={el.message} likesCount={el.likesCount} />);
   return (
     <div>
       My posts
