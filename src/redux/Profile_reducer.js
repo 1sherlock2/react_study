@@ -1,3 +1,5 @@
+import {userAPI} from "../API/API";
+
 const ADD_POST = 'ADD-POST';
 const TEXTAREA_CHANGES = 'TEXTAREA-CHANGES';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -43,6 +45,17 @@ export const textareaChanges = (text) => ({type: TEXTAREA_CHANGES, newPost: text
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile});
 export const toggleIsFetchingLoad = (isFetching) => ({type:TOGGLE_IS_FETCHING, isFetching: isFetching});
 
-
+export const profileServerThunk = (userId) => {
+	if (!userId) {
+		userId = 7936;
+	}
+	return (dispatch) => {
+		dispatch(toggleIsFetchingLoad(true));
+		userAPI.profileFromServer(userId).then(data => {
+			dispatch(toggleIsFetchingLoad(false));
+			dispatch(setUserProfile(data))
+		})
+	}
+}
 
 export default profileReducer;

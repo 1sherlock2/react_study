@@ -1,7 +1,6 @@
 import React from 'react';
 import Profile from "./Profile";
-import * as axios from "axios";
-import {setUserProfile, toggleIsFetchingLoad} from "../../redux/Profile_reducer";
+import {profileServerThunk, setUserProfile, toggleIsFetchingLoad} from "../../redux/Profile_reducer";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {userAPI} from "../../API/API";
@@ -11,15 +10,7 @@ class ProfileContainer extends React.Component {
     super(props);
   }
   componentDidMount() {
-    let userId = this.props.match.params.userId;
-    if (!userId) {
-      userId = 7936;
-    }
-    this.props.toggleIsFetchingLoad(true);
-    userAPI.profileFromServer(userId).then(data => {
-      this.props.toggleIsFetchingLoad(false);
-      this.props.setUserProfile(data)
-    })
+    this.props.profileServerThunk(this.props.match.params.userId)
   }
 
   render() {
@@ -34,4 +25,4 @@ let mapStateToProps = (state) => ({
 
 let UrlWithRouter = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps,{setUserProfile,toggleIsFetchingLoad})(UrlWithRouter)
+export default connect(mapStateToProps,{setUserProfile,toggleIsFetchingLoad, profileServerThunk})(UrlWithRouter)

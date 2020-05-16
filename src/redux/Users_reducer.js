@@ -1,3 +1,5 @@
+import {userAPI} from "../API/API";
+
 const SET_USERS = "SET_USERS";
 const FOLLOW = "FOLLOW";
 const UN_FOLLOW = 'UN_FOLLOW';
@@ -53,7 +55,7 @@ let usersReducer = (state = initialState, action) => {
 }
 
 
-export const changeCurrentPage = (page) => ({type: CHANGE_CURRENT_PAGE, page: page})	// call-back функция, которая возвращает объект, в параметрах которого мы обозначаем те данные которые мы хотим передать в свойства значения.
+export const  changeCurrentPage = (page) => ({type: CHANGE_CURRENT_PAGE, page: page})	// call-back функция, которая возвращает объект, в параметрах которого мы обозначаем те данные которые мы хотим передать в свойства значения.
 export const setUsers = (users) => ({type: SET_USERS, users: users});
 export const Follow = (userId) => ({type: FOLLOW, userId: userId});
 export const unFollow = (userId) => ({type: UN_FOLLOW, userId: userId});
@@ -61,5 +63,41 @@ export const setTotalUsersCount = (totalCount) => ({type: SET_TOTAL_USERS_COUNT,
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING,isFetching: isFetching });
 export const toggleIsFollowingProgress = (isFollowingProgress, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFollowingProgress: isFollowingProgress, userId: userId})
 
+
+
+export const getUsersThunk = (currentPage, pageSize) => {
+	return (dispatch) => {
+		dispatch(toggleIsFetching(true))
+		userAPI.getUsers(currentPage, pageSize).then(data => {
+			dispatch(toggleIsFetching(false))
+			dispatch(setUsers(data.items))
+			dispatch(setTotalUsersCount(data.totalCount))
+		})
+	}
+}
+
+export const followThunk = (id) => {
+	return (dispatch) => {
+		dispatch(toggleIsFollowingProgress(true, id));
+		userAPI.buttonFollowPostFromServer(id).then(data => {
+			dispatch(toggleIsFollowingProgress(false, id));
+			if (data.resultCode == 0) {
+				dispatch(Follow(id));
+			}
+		})
+	}
+}
+
+export const unFollowThunk = (id) => {
+	return (dispatch) => {
+		dispatch(toggleIsFollowingProgress(true, id));
+		userAPI.buttonUnFollowDeleteFromServer(id).then(data => {
+			dispatch(toggleIsFollowingProgress(false, id));
+			if (data.resultCode == 0) {
+				dispatch(unFollow(id));
+			}
+		})
+	}
+}
 
 export default usersReducer;

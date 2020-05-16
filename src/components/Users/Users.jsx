@@ -1,9 +1,8 @@
 import React from "react";
 import s from "./Users.module.css";
 import userPhoto from "../../img/apa6.jpg";
-import * as axios from "axios";
 import {NavLink} from "react-router-dom";
-import {userAPI} from "../../API/API";
+import {followThunk, unFollowThunk} from "../../redux/Users_reducer";
 
 
 const Users = (props) => {
@@ -26,22 +25,24 @@ const Users = (props) => {
 						<span className={s.users_span}>
 							{(el.followed == false)
 								? <button disabled={props.isFollowingProgress.some(id => id === el.id)} onClick={() => {
-									props.toggleIsFollowingProgress(true, el.id);
-									userAPI.buttonFollowPostFromServer(el.id).then(data => {
-										props.toggleIsFollowingProgress(false, el.id);
-										if (data.resultCode == 0) {
-											props.Follow(el.id);
-										}
-									})
+									followThunk(el.id)
+									// props.toggleIsFollowingProgress(true, el.id);
+									// userAPI.buttonFollowPostFromServer(el.id).then(data => {
+									// 	props.toggleIsFollowingProgress(false, el.id);
+									// 	if (data.resultCode == 0) {
+									// 		props.Follow(el.id);
+									// 	}
+									// })
 								}}> Follow </button>
 								: <button disabled={props.isFollowingProgress.some(id => id === el.id)} onClick={() => {
-									props.toggleIsFollowingProgress(true, el.id);
-									userAPI.buttonUnFollowDeleteFromServer(el.id).then(data => {
-										props.toggleIsFollowingProgress(false, el.id);
-										if (data.resultCode == 0) {
-											props.unFollow(el.id);
-										}
-									})
+									unFollowThunk(el.id)
+									// props.toggleIsFollowingProgress(true, el.id);
+									// userAPI.buttonUnFollowDeleteFromServer(el.id).then(data => {
+									// 	props.toggleIsFollowingProgress(false, el.id);
+									// 	if (data.resultCode == 0) {
+									// 		props.unFollow(el.id);
+									// 	}
+									// })
 								}}> Unfollow </button>
 							}
 						</span>
