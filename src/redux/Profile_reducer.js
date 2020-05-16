@@ -47,7 +47,7 @@ export const toggleIsFetchingLoad = (isFetching) => ({type:TOGGLE_IS_FETCHING, i
 
 export const profileServerThunk = (userId) => {
 	if (!userId) {
-		userId = 7936;
+		userId = 2;
 	}
 	return (dispatch) => {
 		dispatch(toggleIsFetchingLoad(true));

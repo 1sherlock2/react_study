@@ -3,7 +3,6 @@ import Profile from "./Profile";
 import {profileServerThunk, setUserProfile, toggleIsFetchingLoad} from "../../redux/Profile_reducer";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {userAPI} from "../../API/API";
 
 class ProfileContainer extends React.Component {
   constructor(props) {

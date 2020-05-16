@@ -15,11 +15,7 @@ export const userAPI = {
 				return response.data;
 		})
 	},
-	// getChangesPagesFromServer(page, pageSize) {
-	// 	return instance.get(`users?page=${page}&count=${pageSize}`).then(response => {
-	// 			return response.data;
-	// 		})
-	// },
+
 	usersAuthFromServer() {
 		return instance.get(`auth/me`).then(response => {
 				return response.data;
