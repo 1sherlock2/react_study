@@ -2,11 +2,14 @@ import React from "react";
 import s from "./Messages.module.css";
 import Companion from "./Companion/Companion_Class";
 import Dialogs from "./Dialogs/Dialogs_Class";
+import Redirect from "react-router-dom/es/Redirect";
 
 
 const Messages = (props) => {
 	let companionElements = props.companionsData.map((el) => <Companion id={el.id} name={el.name}/>)
 	let messageElements = props.dialogsData.map((el) => <Dialogs message={el.message}/>)
+
+	if (props.isAuth === false) return <Redirect to={`/login`} />
 	return (
 		<div className={s.messages}>
 			<div className={s.companion}>

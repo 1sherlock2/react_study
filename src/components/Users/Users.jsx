@@ -3,6 +3,7 @@ import s from "./Users.module.css";
 import userPhoto from "../../img/apa6.jpg";
 import {NavLink} from "react-router-dom";
 import {followThunk, unFollowThunk} from "../../redux/Users_reducer";
+import Redirect from "react-router-dom/es/Redirect";
 
 
 const Users = (props) => {
@@ -11,6 +12,8 @@ const Users = (props) => {
 	for (let i = 1; i <= pageCount; i++) {
 		pages.push(i);
 	}
+
+	if (props.isAuth === false) return <Redirect to={`/login`} />
 	return (
 		<div className={s.users}>
 			<div className={s.cursor_pointer}>
@@ -26,23 +29,9 @@ const Users = (props) => {
 							{(el.followed == false)
 								? <button disabled={props.isFollowingProgress.some(id => id === el.id)} onClick={() => {
 									followThunk(el.id)
-									// props.toggleIsFollowingProgress(true, el.id);
-									// userAPI.buttonFollowPostFromServer(el.id).then(data => {
-									// 	props.toggleIsFollowingProgress(false, el.id);
-									// 	if (data.resultCode == 0) {
-									// 		props.Follow(el.id);
-									// 	}
-									// })
 								}}> Follow </button>
 								: <button disabled={props.isFollowingProgress.some(id => id === el.id)} onClick={() => {
 									unFollowThunk(el.id)
-									// props.toggleIsFollowingProgress(true, el.id);
-									// userAPI.buttonUnFollowDeleteFromServer(el.id).then(data => {
-									// 	props.toggleIsFollowingProgress(false, el.id);
-									// 	if (data.resultCode == 0) {
-									// 		props.unFollow(el.id);
-									// 	}
-									// })
 								}}> Unfollow </button>
 							}
 						</span>

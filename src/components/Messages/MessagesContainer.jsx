@@ -24,6 +24,7 @@ class MessagesContainer extends React.Component {
 										 onTextareaChangesInMessages={this.onTextareaChangesInMessages}
 										 onAddMessages={this.onAddMessages}
 										 newMessages={this.newMessages}
+										 isAuth={this.props.isAuth}
 					/>
 	}
 }
@@ -33,18 +34,9 @@ let mapStateToProps = (state) => {
 		dialogsData: state.messagesData.dialogsData,
 		companionsData: state.messagesData.companionsData,
 		currentDialogsData: state.messagesData.currentDialogsData,
+		isAuth: state.authData.isAuth,
 	}
 }
-// let mapDispatchToProps = (dispatch) => {
-// 	return {
-// 		addMessages: () => {
-// 			dispatch(addMessagesActionCreator());
-// 		},
-// 		textareaChangesInMessages: (text) => {
-// 			dispatch(textareaChangesInMessagesActionCreator(text))
-// 		}
-// 	}
-// }
 
 export default connect(mapStateToProps, {addMessages, textareaChangesInMessages})(MessagesContainer)
 

@@ -22,6 +22,7 @@ class NewsContainer extends React.Component {
 								 onTextareaChangesNewsPost={this.onTextareaChangesNewsPost}
 								 onAddNews={this.onAddNews}
 								 currentNewsData={this.props.currentNewsData}
+								 isAuth={this.props.isAuth}
 		/>
 	}
 }
@@ -31,19 +32,9 @@ let mapStateToProps = (state) => {
 	return {
 		newsPosts: state.newsData.newsPosts,
 		currentNewsData: state.newsData.currentNewsData,
+		isAuth: state.authData.isAuth,
 	}
 }
-
-// let mapDispatchToProps = (dispatch) => {
-// 	return {
-// 		addNews: () => {
-// 			dispatch(addNewsActionCreator())
-// 		},
-// 		textareaChangesNewsPost: (text) => {
-// 			dispatch(textareaChangesNewsPostActionCreator(text));
-// 		}
-// 	}
-// }
 
 export default connect(mapStateToProps, {addNews,textareaChangesNewsPost})(NewsContainer)
 
