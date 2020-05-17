@@ -3,6 +3,7 @@ import {addNews, textareaChangesNewsPost} from "../../redux/News_reducer";
 import News from "./News";
 import {connect} from "react-redux";
 import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
+import {compose} from "redux";
 
 
 class NewsContainer extends React.Component {
@@ -36,6 +37,9 @@ let mapStateToProps = (state) => {
 }
 
 // let withAuthRedirectComponent = authRedirectComponent(NewsContainer)
+// export default authRedirectComponent(connect(mapStateToProps, {addNews,textareaChangesNewsPost})(NewsContainer))
 
-export default authRedirectComponent(connect(mapStateToProps, {addNews,textareaChangesNewsPost})(NewsContainer))
-
+export default compose(
+	(connect(mapStateToProps, {addNews,textareaChangesNewsPost})),
+	authRedirectComponent
+	)(NewsContainer)

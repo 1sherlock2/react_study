@@ -3,6 +3,7 @@ import Messages from "./Messages";
 import {addMessages, textareaChangesInMessages} from "../../redux/Messages_reducer";
 import {connect} from "react-redux";
 import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
+import {compose} from "redux";
 
 
 class MessagesContainer extends React.Component {
@@ -40,6 +41,10 @@ let mapStateToProps = (state) => {
 }
 
 
-export default authRedirectComponent(connect(mapStateToProps, {addMessages, textareaChangesInMessages})(MessagesContainer))
+// export default authRedirectComponent(connect(mapStateToProps, {addMessages, textareaChangesInMessages})(MessagesContainer))
 
+export default compose(
+	(connect(mapStateToProps, {addMessages, textareaChangesInMessages})),
+	authRedirectComponent
+	)(MessagesContainer)
 

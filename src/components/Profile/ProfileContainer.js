@@ -4,6 +4,7 @@ import {profileServerThunk, setUserProfile, toggleIsFetchingLoad} from "../../re
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
+import {compose} from "redux";
 
 
 class ProfileContainer extends React.Component {
@@ -26,13 +27,21 @@ let mapStateToProps = (state) => ({
 	isFetching: state.postData.isFetching,
 })
 
-// let withAuthRedirectComponent = authRedirectComponent(ProfileContainer);
-// let urlWithRouter = withRouter(withAuthRedirectComponent)
-//
-let urlWithRouter = withRouter(ProfileContainer)
+// let urlWithRouter = withRouter(ProfileContainer)
 
-export default authRedirectComponent(connect(mapStateToProps, {
-	setUserProfile,
-	toggleIsFetchingLoad,
-	profileServerThunk
-})(urlWithRouter))
+// authRedirectComponent
+// export default authRedirectComponent(connect(mapStateToProps, {
+// 	setUserProfile,
+// 	toggleIsFetchingLoad,
+// 	profileServerThunk
+// })(urlWithRouter))
+
+ export default compose(
+ 	connect(mapStateToProps, {
+	 setUserProfile,
+	 toggleIsFetchingLoad,
+	 profileServerThunk
+ }),
+	 withRouter,
+	 authRedirectComponent,
+ )(ProfileContainer)
