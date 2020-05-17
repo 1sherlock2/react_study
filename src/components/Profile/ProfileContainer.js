@@ -3,29 +3,36 @@ import Profile from "./Profile";
 import {profileServerThunk, setUserProfile, toggleIsFetchingLoad} from "../../redux/Profile_reducer";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import Redirect from "react-router-dom/es/Redirect";
+import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
+
 
 class ProfileContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount() {
-    this.props.profileServerThunk(this.props.match.params.userId)
-  }
+	constructor(props) {
+		super(props);
+	}
 
-  render() {
-    if (this.props.isAuth === false) return <Redirect to={`/login`} />
-    return <Profile {...this.props} profile={this.props.profile} />
-  }
+	componentDidMount() {
+		this.props.profileServerThunk(this.props.match.params.userId)
+	}
+
+	render() {
+		return <Profile {...this.props} profile={this.props.profile}/>
+	}
 }
 
 
 let mapStateToProps = (state) => ({
-  profile: state.postData.profile,
-  isFetching: state.postData.isFetching,
-  isAuth: state.authData.isAuth
+	profile: state.postData.profile,
+	isFetching: state.postData.isFetching,
 })
 
-let UrlWithRouter = withRouter(ProfileContainer)
+// let withAuthRedirectComponent = authRedirectComponent(ProfileContainer);
+// let urlWithRouter = withRouter(withAuthRedirectComponent)
+//
+let urlWithRouter = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps,{setUserProfile,toggleIsFetchingLoad, profileServerThunk})(UrlWithRouter)
+export default authRedirectComponent(connect(mapStateToProps, {
+	setUserProfile,
+	toggleIsFetchingLoad,
+	profileServerThunk
+})(urlWithRouter))

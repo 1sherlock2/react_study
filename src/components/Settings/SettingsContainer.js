@@ -1,6 +1,8 @@
 import React from "react";
 import Settings from "./Settings";
 import {connect} from "react-redux";
+import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
+
 
 class SettingsContainer extends React.Component {
 	constructor(props) {
@@ -11,10 +13,11 @@ class SettingsContainer extends React.Component {
 	}
 }
 
+// let withAuthRedirectComponent = authRedirectComponent(SettingsContainer)
+
 const mapStateToProps = (state) => {
 	return {
-		isAuth: state.authData.isAuth,
-	}
-}
 
-export default connect(mapStateToProps,{})(SettingsContainer)
+	}
+};
+export default authRedirectComponent(connect(mapStateToProps,{})(SettingsContainer))

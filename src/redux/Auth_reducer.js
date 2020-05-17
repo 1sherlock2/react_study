@@ -38,8 +38,6 @@ export const authThunk = () => {
 			if (data.resultCode === 0) {
 				let {email, id, login} = data.data;
 				dispatch(setUserData(email, id, login));
-			} else if (data.resultCode == 1) {
-
 			}
 		})
 	}

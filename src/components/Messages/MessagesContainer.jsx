@@ -2,13 +2,15 @@ import React from "react";
 import Messages from "./Messages";
 import {addMessages, textareaChangesInMessages} from "../../redux/Messages_reducer";
 import {connect} from "react-redux";
+import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
 
 
 class MessagesContainer extends React.Component {
 	constructor(props) {
 		super(props);
 	}
-		newMessages = React.createRef();
+
+	newMessages = React.createRef();
 	onTextareaChangesInMessages = () => {
 		let text = this.newMessages.current.value
 		this.props.textareaChangesInMessages(text);
@@ -25,7 +27,7 @@ class MessagesContainer extends React.Component {
 										 onAddMessages={this.onAddMessages}
 										 newMessages={this.newMessages}
 										 isAuth={this.props.isAuth}
-					/>
+		/>
 	}
 }
 
@@ -34,10 +36,10 @@ let mapStateToProps = (state) => {
 		dialogsData: state.messagesData.dialogsData,
 		companionsData: state.messagesData.companionsData,
 		currentDialogsData: state.messagesData.currentDialogsData,
-		isAuth: state.authData.isAuth,
 	}
 }
 
-export default connect(mapStateToProps, {addMessages, textareaChangesInMessages})(MessagesContainer)
+
+export default authRedirectComponent(connect(mapStateToProps, {addMessages, textareaChangesInMessages})(MessagesContainer))
 
 

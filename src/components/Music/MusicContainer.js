@@ -1,6 +1,7 @@
 import React from "react";
 import Music from "./Music";
 import {connect} from "react-redux";
+import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
 
 class MusicContainer extends React.Component {
 	constructor(props) {
@@ -12,10 +13,12 @@ class MusicContainer extends React.Component {
 	}
 }
 
-const mapStateToProps =  (state) => {
+// let withAuthRedirectComponent = authRedirectComponent(MusicContainer)
+
+function mapStateToProps() {
 	return {
-		isAuth: state.authData.isAuth
+
 	}
 }
 
-export default connect(mapStateToProps,)(MusicContainer)
+export default authRedirectComponent(connect(mapStateToProps,{})(MusicContainer))

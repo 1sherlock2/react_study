@@ -2,6 +2,7 @@ import React from "react";
 import {addNews, textareaChangesNewsPost} from "../../redux/News_reducer";
 import News from "./News";
 import {connect} from "react-redux";
+import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
 
 
 class NewsContainer extends React.Component {
@@ -22,7 +23,6 @@ class NewsContainer extends React.Component {
 								 onTextareaChangesNewsPost={this.onTextareaChangesNewsPost}
 								 onAddNews={this.onAddNews}
 								 currentNewsData={this.props.currentNewsData}
-								 isAuth={this.props.isAuth}
 		/>
 	}
 }
@@ -32,9 +32,10 @@ let mapStateToProps = (state) => {
 	return {
 		newsPosts: state.newsData.newsPosts,
 		currentNewsData: state.newsData.currentNewsData,
-		isAuth: state.authData.isAuth,
 	}
 }
 
-export default connect(mapStateToProps, {addNews,textareaChangesNewsPost})(NewsContainer)
+// let withAuthRedirectComponent = authRedirectComponent(NewsContainer)
+
+export default authRedirectComponent(connect(mapStateToProps, {addNews,textareaChangesNewsPost})(NewsContainer))
 

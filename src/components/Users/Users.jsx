@@ -12,8 +12,6 @@ const Users = (props) => {
 	for (let i = 1; i <= pageCount; i++) {
 		pages.push(i);
 	}
-
-	if (props.isAuth === false) return <Redirect to={`/login`} />
 	return (
 		<div className={s.users}>
 			<div className={s.cursor_pointer}>

@@ -9,7 +9,6 @@ const Messages = (props) => {
 	let companionElements = props.companionsData.map((el) => <Companion id={el.id} name={el.name}/>)
 	let messageElements = props.dialogsData.map((el) => <Dialogs message={el.message}/>)
 
-	if (props.isAuth === false) return <Redirect to={`/login`} />
 	return (
 		<div className={s.messages}>
 			<div className={s.companion}>
