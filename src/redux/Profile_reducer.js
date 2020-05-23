@@ -9,10 +9,10 @@ let initialState = {
 	posts: [],
 	currentText: 'initialStateCurrentText',
 	profile: null,
-	isFetching:false,
+	isFetching: false,
 };
 
-const profileReducer = (state = initialState,action) => {
+const profileReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_POST:
 			return {
@@ -43,7 +43,7 @@ const profileReducer = (state = initialState,action) => {
 export const addPost = () => ({type: ADD_POST});
 export const textareaChanges = (text) => ({type: TEXTAREA_CHANGES, newPost: text,});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile});
-export const toggleIsFetchingLoad = (isFetching) => ({type:TOGGLE_IS_FETCHING, isFetching: isFetching});
+export const toggleIsFetchingLoad = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching: isFetching});
 
 export const profileServerThunk = (userId) => {
 	if (!userId) {

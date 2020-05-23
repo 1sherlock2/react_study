@@ -22,7 +22,8 @@ let usersReducer = (state = initialState, action) => {
 		case SET_USERS:
 			return {...state, users: action.users,}
 		case FOLLOW:
-			return {...state, users: state.users.map((el) => {
+			return {
+				...state, users: state.users.map((el) => {
 					if (el.id === action.userId) {
 						return {...el, followed: true}
 					}
@@ -30,7 +31,8 @@ let usersReducer = (state = initialState, action) => {
 				})
 			}
 		case UN_FOLLOW:
-			return {...state, users: state.users.map((el) => {
+			return {
+				...state, users: state.users.map((el) => {
 					if (el.id === action.userId) {
 						return {...el, followed: false}
 					}
@@ -47,22 +49,26 @@ let usersReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isFollowingProgress: action.isFollowingProgress
-				? [...state.isFollowingProgress, action.userId]
-				: state.isFollowingProgress.filter(id => id != action.userId)}
+					? [...state.isFollowingProgress, action.userId]
+					: state.isFollowingProgress.filter(id => id != action.userId)
+			}
 		default:
 			return state
 	}
 }
 
 
-export const  changeCurrentPage = (page) => ({type: CHANGE_CURRENT_PAGE, page: page})	// call-back функция, которая возвращает объект, в параметрах которого мы обозначаем те данные которые мы хотим изменить и передать в свойства значения.
+export const changeCurrentPage = (page) => ({type: CHANGE_CURRENT_PAGE, page: page})	// call-back функция, которая возвращает объект, в параметрах которого мы обозначаем те данные которые мы хотим изменить и передать в свойства значения.
 export const setUsers = (users) => ({type: SET_USERS, users: users});
 export const Follow = (userId) => ({type: FOLLOW, userId: userId});
 export const unFollow = (userId) => ({type: UN_FOLLOW, userId: userId});
 export const setTotalUsersCount = (totalCount) => ({type: SET_TOTAL_USERS_COUNT, totalCount: totalCount});
-export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING,isFetching: isFetching });
-export const toggleIsFollowingProgress = (isFollowingProgress, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFollowingProgress: isFollowingProgress, userId: userId})
-
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching: isFetching});
+export const toggleIsFollowingProgress = (isFollowingProgress, userId) => ({
+	type: TOGGLE_IS_FOLLOWING_PROGRESS,
+	isFollowingProgress: isFollowingProgress,
+	userId: userId
+})
 
 
 export const getUsersThunk = (currentPage, pageSize) => {
@@ -81,7 +87,7 @@ export const followThunk = (id) => {
 		dispatch(toggleIsFollowingProgress(true, id));
 		userAPI.buttonFollowPostFromServer(id).then(data => {
 			dispatch(toggleIsFollowingProgress(false, id));
-			if (data.resultCode == 0) {
+			if (data.resultCode === 0) {
 				dispatch(Follow(id));
 			}
 		})

@@ -27,21 +27,12 @@ let mapStateToProps = (state) => ({
 	isFetching: state.postData.isFetching,
 })
 
-// let urlWithRouter = withRouter(ProfileContainer)
-
-// authRedirectComponent
-// export default authRedirectComponent(connect(mapStateToProps, {
-// 	setUserProfile,
-// 	toggleIsFetchingLoad,
-// 	profileServerThunk
-// })(urlWithRouter))
-
- export default compose(
- 	connect(mapStateToProps, {
-	 setUserProfile,
-	 toggleIsFetchingLoad,
-	 profileServerThunk
- }),
-	 withRouter,
-	 authRedirectComponent,
- )(ProfileContainer)
+export default compose(
+	connect(mapStateToProps, {
+		setUserProfile,
+		toggleIsFetchingLoad,
+		profileServerThunk
+	}),
+	withRouter,
+	authRedirectComponent,
+)(ProfileContainer)
