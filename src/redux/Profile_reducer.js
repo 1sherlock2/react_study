@@ -1,14 +1,16 @@
-import {userAPI} from "../API/API";
+import {profileAPI, userAPI} from "../API/API";
 
 const ADD_POST = 'ADD-POST';
 const TEXTAREA_CHANGES = 'TEXTAREA-CHANGES';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const SET_USER_STATUS = 'SET_USER_STATUS;'
 
 let initialState = {
 	posts: [],
 	currentText: 'initialStateCurrentText',
 	profile: null,
+	status: null,
 	isFetching: false,
 };
 
@@ -35,26 +37,46 @@ const profileReducer = (state = initialState, action) => {
 				...state,
 				isFetching: action.isFetching,
 			}
+		case SET_USER_STATUS:
+			return {
+				...state,
+				status: action.status,
+			}
 		default:
 			return state;
 	}
 }
 
+export const setUserStatus = (status) => ({type: SET_USER_STATUS, status: status})
 export const addPost = () => ({type: ADD_POST});
 export const textareaChanges = (text) => ({type: TEXTAREA_CHANGES, newPost: text,});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile});
 export const toggleIsFetchingLoad = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching: isFetching});
 
 export const profileServerThunk = (userId) => {
-	if (!userId) {
-		userId = 2;
-	}
 	return (dispatch) => {
 		dispatch(toggleIsFetchingLoad(true));
 		userAPI.profileFromServer(userId).then(data => {
 			dispatch(toggleIsFetchingLoad(false));
 			dispatch(setUserProfile(data))
 		})
+	}
+}
+
+export const setUserStatusThunk = (userId) => {
+	return (dispatch) => {
+		profileAPI.getStatus(userId).then(response => {
+			dispatch(setUserStatus(response.data));
+		});
+	}
+}
+export const updateUserStatusThunk = (status) => {
+	return (dispatch) => {
+		profileAPI.updateStatus(status).then(response => {
+			if (response.data.resultCode === 0) {
+				dispatch(setUserStatus(status));
+			}
+		});
 	}
 }
 

@@ -1,6 +1,11 @@
 import React from 'react';
 import Profile from "./Profile";
-import {profileServerThunk, setUserProfile, toggleIsFetchingLoad} from "../../redux/Profile_reducer";
+import {
+	profileServerThunk,
+	setUserProfile,
+	setUserStatusThunk,
+	toggleIsFetchingLoad, updateUserStatusThunk
+} from "../../redux/Profile_reducer";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
@@ -13,11 +18,16 @@ class ProfileContainer extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.profileServerThunk(this.props.match.params.userId)
+		let userId = this.props.match.params.userId;
+		if (!userId) {
+			userId = 7936;
+		}
+		this.props.profileServerThunk(userId)
+		this.props.setUserStatusThunk(userId)
 	}
 
 	render() {
-		return <Profile {...this.props} profile={this.props.profile}/>
+		return <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateUserStatusThunk={this.props.updateUserStatusThunk}/>
 	}
 }
 
@@ -25,13 +35,16 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => ({
 	profile: state.postData.profile,
 	isFetching: state.postData.isFetching,
+	status: state.postData.status,
 })
 
 export default compose(
 	connect(mapStateToProps, {
 		setUserProfile,
+		setUserStatusThunk,
 		toggleIsFetchingLoad,
-		profileServerThunk
+		profileServerThunk,
+		updateUserStatusThunk,
 	}),
 	withRouter,
 	authRedirectComponent,

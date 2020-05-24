@@ -9,13 +9,16 @@ const Profile_info = (props) => {
 	}
 	return (
 		<div className={s.profile_info}>
+			<div className={s.profile_name}>
+				<span> {props.profile.fullName}</span>
+			</div>
 			<div className={s.image_profile}>
 				<img src={props.profile.photos.large}/>
 			</div>
-			<ProfileStatus status='Status'/>
-			{/*<div className={s.description}>*/}
-			{/*	{props.profile.aboutMe}*/}
-			{/*</div>*/}
+			<div className={s.description}>
+				{props.profile.aboutMe}
+			</div>
+			<ProfileStatus status={props.status} updateUserStatusThunk={props.updateUserStatusThunk}/>
 		</div>
 	)
 }

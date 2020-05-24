@@ -1,11 +1,25 @@
 .profile_info {
+	display: grid;
+	grid-template-areas: "name name" "description image";
 	height: auto;
 	margin: 20px;
 }
-img {
-	width: 20%;
-	margin: 0 auto auto 125px;
+
+.profile_name {
+	grid-area: name;
 }
+
+.image_profile {
+	grid-area: image;
+}
+
+img {
+	width: 40%;
+	margin: 0 auto auto 225px;
+	border-radius: 10%;
+}
+
 .description {
+	grid-area: description;
 	margin: 20px;
 }
