@@ -54,23 +54,14 @@ let mapStateToProps = (state) => {
 		isAuth: state.authData.isAuth,
 	}
 }
-// let withAuthRedirectComponent = authRedirectComponent(UsersContainer)
-
-// export default authRedirectComponent(connect(mapStateToProps, {
-// 	Follow,
-// 	unFollow,
-// 	getUsersThunk,
-// 	changeCurrentPage,
-// 	toggleIsFollowingProgress
-// })(UsersContainer));
 
 export default compose(
 	(connect(mapStateToProps, {
-			Follow,
-			unFollow,
-			getUsersThunk,
-			changeCurrentPage,
-			toggleIsFollowingProgress
-		})),
+		Follow,
+		unFollow,
+		getUsersThunk,
+		changeCurrentPage,
+		toggleIsFollowingProgress
+	})),
 	authRedirectComponent,
 )(UsersContainer)

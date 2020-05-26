@@ -27,13 +27,13 @@ export const userAPI = {
 		// 		return response.data;
 		// })
 	},
-	buttonFollowPostFromServer(id) {
-		return instance.post(`follow/${id}`).then(response => {
+	buttonFollowPostFromServer(userId) {
+		return instance.post(`follow/${userId}`).then(response => {
 			return response.data;
 		})
 	},
-	buttonUnFollowDeleteFromServer(id) {
-		return instance.delete(`follow/${id}`).then(response => {
+	buttonUnFollowDeleteFromServer(userId) {
+		return instance.delete(`follow/${userId}`).then(response => {
 			return response.data;
 		})
 	}

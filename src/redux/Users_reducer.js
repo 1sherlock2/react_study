@@ -50,7 +50,7 @@ let usersReducer = (state = initialState, action) => {
 				...state,
 				isFollowingProgress: action.isFollowingProgress
 					? [...state.isFollowingProgress, action.userId]
-					: state.isFollowingProgress.filter(id => id != action.userId)
+					: state.isFollowingProgress.filter(id => id !== action.userId)
 			}
 		default:
 			return state
@@ -84,9 +84,9 @@ export const getUsersThunk = (currentPage, pageSize) => {
 
 export const followThunk = (id) => {
 	return (dispatch) => {
-		dispatch(toggleIsFollowingProgress(true, id));
+		dispatch(toggleIsFollowingProgress(false, id));
 		userAPI.buttonFollowPostFromServer(id).then(data => {
-			dispatch(toggleIsFollowingProgress(false, id));
+			dispatch(toggleIsFollowingProgress(true, id));
 			if (data.resultCode === 0) {
 				dispatch(Follow(id));
 			}
