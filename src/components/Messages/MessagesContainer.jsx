@@ -1,9 +1,9 @@
 import React from "react";
 import Messages from "./Messages";
-import {addMessages, textareaChangesInMessages} from "../../redux/Messages_reducer";
 import {connect} from "react-redux";
 import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
 import {compose} from "redux";
+import {addMessages} from "../../redux/Messages_reducer";
 
 
 class MessagesContainer extends React.Component {
@@ -11,23 +11,26 @@ class MessagesContainer extends React.Component {
 		super(props);
 	}
 
-	newMessages = React.createRef();
-	onTextareaChangesInMessages = () => {
-		let text = this.newMessages.current.value
-		this.props.textareaChangesInMessages(text);
-	};
-	onAddMessages = () => {
-		this.props.addMessages();
+	// onTextareaChangesInMessages = (e) => {
+	// 	let text = e.currentTarget.value
+	// 	this.props.textareaChangesInMessages(text);
+	// }
+	// onAddMessages = (value) => {
+	// 	this.props.addMessages(value.message);
+	// }
+	message = this.props.dialogsData.message
+	addMessagesForm = (values) => {
+		this.props.addMessages(values.message)
 	}
 
 	render() {
 		return <Messages companionsData={this.props.companionsData}
+										 addMessagesForm={this.addMessagesForm}
 										 dialogsData={this.props.dialogsData}
-										 currentDialogsData={this.props.currentDialogsData}
-										 onTextareaChangesInMessages={this.onTextareaChangesInMessages}
-										 onAddMessages={this.onAddMessages}
-										 newMessages={this.newMessages}
 										 isAuth={this.props.isAuth}
+										 // currentDialogsData={this.props.currentDialogsData}
+										 // onTextareaChangesInMessages={this.onTextareaChangesInMessages}
+										 // onAddMessages={this.onAddMessages}
 		/>
 	}
 }
@@ -40,11 +43,8 @@ let mapStateToProps = (state) => {
 	}
 }
 
-
-// export default authRedirectComponent(connect(mapStateToProps, {addMessages, textareaChangesInMessages})(MessagesContainer))
-
 export default compose(
-	(connect(mapStateToProps, {addMessages, textareaChangesInMessages})),
+	(connect(mapStateToProps, {addMessages})),
 	authRedirectComponent
-	)(MessagesContainer)
+)(MessagesContainer)
 

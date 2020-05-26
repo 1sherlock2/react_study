@@ -1,6 +1,5 @@
-
 const ADD_MESSAGES = 'ADD_MESSAGES';
-const TEXTAREA_CHANGES_MESSAGES = "TEXTAREA_CHANGES_MESSAGES";
+// const TEXTAREA_CHANGES_MESSAGES = "TEXTAREA_CHANGES_MESSAGES";
 
 let initialState = {
 	companionsData: [
@@ -10,31 +9,29 @@ let initialState = {
 		{id: 4, name: "Muslim"},
 		{id: 5, name: "Petr"},
 	],
-		dialogsData: [],
-		currentDialogsData: '',
+	dialogsData: [],
 };
 
 const messagesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_MESSAGES:
-		return {
-				...state,
-				dialogsData: [...state.dialogsData,{id: 5, message: state.currentDialogsData,}],
-				currentDialogsData: '',
-			};
-		case TEXTAREA_CHANGES_MESSAGES:
 			return {
 				...state,
-				currentDialogsData: action.body,
+				dialogsData: [...state.dialogsData, {id: 5, message: action.message,}],
 			}
+		// case TEXTAREA_CHANGES_MESSAGES:
+		// 	return {
+		// 		...state,
+		// 		currentDialogsData: action.text,
+		// 	}
 		default:
 			return state;
 	}
 }
 
-export const addMessages = () => ({type: ADD_MESSAGES,});
+export const addMessages = (message) => ({type: ADD_MESSAGES, message});
 
-export const textareaChangesInMessages = (text) => ({type: TEXTAREA_CHANGES_MESSAGES, body: text,});
+// export const textareaChangesInMessages = (text) => ({type: TEXTAREA_CHANGES_MESSAGES, text: text,});
 
 
 export default messagesReducer;

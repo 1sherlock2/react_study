@@ -4,14 +4,15 @@ const SET_USER_DATA = 'SET_USER_DATA';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
-		userId: null,
-		email: null,
-		login: null,
-		isFetching: false,
-		isAuth: false,
+	userId: null,
+	email: null,
+	login: null,
+	password: null,
+	isFetching: false,
+	isAuth: false,
 };
 
-let authReducer = (state=initialState, action) => {
+let authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_USER_DATA:
 			return {
@@ -30,7 +31,9 @@ let authReducer = (state=initialState, action) => {
 };
 
 
-export const setUserData = (userId, email, login) => ({type:SET_USER_DATA, data: {email, userId, login}});
+export const setUserData = (userId, email, login) => ({type: SET_USER_DATA, data: {email, userId, login}});
+
+
 
 export const authThunk = () => {
 	return (dispatch) => {

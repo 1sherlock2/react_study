@@ -1,17 +1,17 @@
 import {profileAPI, userAPI} from "../API/API";
 
 const ADD_POST = 'ADD-POST';
-const TEXTAREA_CHANGES = 'TEXTAREA-CHANGES';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const SET_USER_STATUS = 'SET_USER_STATUS;'
+// const TEXTAREA_CHANGES = 'TEXTAREA-CHANGES';
 
 let initialState = {
 	posts: [],
-	currentText: 'initialStateCurrentText',
 	profile: null,
 	status: null,
 	isFetching: false,
+	// currentText: '',
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -19,13 +19,8 @@ const profileReducer = (state = initialState, action) => {
 		case ADD_POST:
 			return {
 				...state,
-				posts: [...state.posts, {id: 4, message: state.currentText, likeCount: 1, photo: state.profile.photos.small}],
-				currentText: '',
-			}
-		case TEXTAREA_CHANGES:
-			return {
-				...state,
-				currentText: action.newPost,
+				posts: [...state.posts, {id: 4, message: action.post, likeCount: 1, photo: state.profile.photos.small}],
+				currentText: null,
 			}
 		case SET_USER_PROFILE:
 			return {
@@ -42,16 +37,21 @@ const profileReducer = (state = initialState, action) => {
 				...state,
 				status: action.status,
 			}
+		// case TEXTAREA_CHANGES:
+		// 	return {
+		// 		...state,
+		// 		currentText: action.newPost,
+		// 	}
 		default:
 			return state;
 	}
 }
 
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status: status})
-export const addPost = () => ({type: ADD_POST});
-export const textareaChanges = (text) => ({type: TEXTAREA_CHANGES, newPost: text,});
+export const addPost = (post) => ({type: ADD_POST, post});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile});
 export const toggleIsFetchingLoad = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching: isFetching});
+// export const textareaChanges = (text) => ({type: TEXTAREA_CHANGES, newPost: text,});
 
 export const profileServerThunk = (userId) => {
 	return (dispatch) => {

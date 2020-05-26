@@ -6,7 +6,7 @@ import {
 	unFollow
 } from "../../redux/Users_reducer";
 import Users from "./Users";
-import Preloader from "../common/Preloader/Preloader";
+import Preloader from "../Common/Preloader/Preloader";
 import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
 import {compose} from "redux";
 
