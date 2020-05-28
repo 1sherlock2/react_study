@@ -11,7 +11,6 @@ let initialState = {
 	profile: null,
 	status: null,
 	isFetching: false,
-	// currentText: '',
 };
 
 const profileReducer = (state = initialState, action) => {

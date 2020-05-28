@@ -7,15 +7,14 @@ import {
 	requiredFiled
 } from "../../../Utils/Validator/Validator";
 
-let maxLength20 = maxLengthCreator(20)
+let maxLength20 = maxLengthCreator(30)
 let minLength5 = minLengthCreator(5)
 const LoginForm = (props) => {
 	return (
 		<div className={s.login_form}>
-			<form
-				onSubmit={props.handleSubmit}>                                                              {/* (onSubmit (handleSubmit) ) */}
+			<form onSubmit={props.handleSubmit}> {/* (onSubmit (handleSubmit) ) */}
 				<div>
-					<Field component={Input} name={'login'} validate={[requiredFiled, maxLength20]} type="text"
+					<Field component={Input} name={'email'} validate={[requiredFiled, maxLength20]} type="text"
 								 placeholder="login"/>
 				</div>
 				<div>

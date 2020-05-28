@@ -1,4 +1,4 @@
-import {userAPI} from "../API/API";
+import {authAPI, userAPI} from "../API/API";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
@@ -17,8 +17,7 @@ let authReducer = (state = initialState, action) => {
 		case SET_USER_DATA:
 			return {
 				...state,
-				...action.data,
-				isAuth: true
+				...action.payLoad,
 			}
 		case TOGGLE_IS_FETCHING:
 			return {
@@ -31,17 +30,34 @@ let authReducer = (state = initialState, action) => {
 };
 
 
-export const setUserData = (userId, email, login) => ({type: SET_USER_DATA, data: {email, userId, login}});
+export const setUserData = (userId, email, login, isAuth) => ({
+	type: SET_USER_DATA,
+	payLoad: {email, userId, login, isAuth}
+});
 
-export const authThunk = () => {
-	return (dispatch) => {
-		userAPI.usersAuthFromServer().then(data => {
-			if (data.resultCode === 0) {
-				let {email, id, login} = data.data;
-				dispatch(setUserData(email, id, login));
-			}
-		})
-	}
+export const authThunk = () => (dispatch) => {
+	authAPI.usersAuthFromServer().then(response => {
+		if (response.resultCode === 0) {
+			let {email, id, login} = response.data;
+			dispatch(setUserData(email, id, login, true));
+		}
+	})
+};
+
+export const loginThunk = (email, password, rememberMe) => (dispatch) => {
+	authAPI.loginFromServer(email, password, rememberMe = false).then(response => {
+		if (response.resultCode === 0) {
+			dispatch(authThunk())
+		}
+	})
+}
+
+export const logoutThunk = () => (dispatch) => {
+	authAPI.logoutFromServer().then(response => {
+		if (response.resultCode === 0) {
+			dispatch(setUserData(null, null, null, false));
+		}
+	})
 }
 
 

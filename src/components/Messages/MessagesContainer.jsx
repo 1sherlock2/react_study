@@ -11,13 +11,6 @@ class MessagesContainer extends React.Component {
 		super(props);
 	}
 
-	// onTextareaChangesInMessages = (e) => {
-	// 	let text = e.currentTarget.value
-	// 	this.props.textareaChangesInMessages(text);
-	// }
-	// onAddMessages = (value) => {
-	// 	this.props.addMessages(value.message);
-	// }
 	message = this.props.dialogsData.message
 	addMessagesForm = (values) => {
 		this.props.addMessages(values.message)
@@ -28,9 +21,6 @@ class MessagesContainer extends React.Component {
 										 addMessagesForm={this.addMessagesForm}
 										 dialogsData={this.props.dialogsData}
 										 isAuth={this.props.isAuth}
-										 // currentDialogsData={this.props.currentDialogsData}
-										 // onTextareaChangesInMessages={this.onTextareaChangesInMessages}
-										 // onAddMessages={this.onAddMessages}
 		/>
 	}
 }
