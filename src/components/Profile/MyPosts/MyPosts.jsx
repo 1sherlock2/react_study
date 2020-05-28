@@ -12,12 +12,7 @@ const MyPosts = (props) => {
 		<div>
 			My posts
 			<div>
-				<MyPostsReduxForm onSubmit={addPostsForm}
-													// onTextareaChanges={props.onTextareaChanges}
-													// newPostElements={props.newPostElements}
-													// currentText={props.currentText}
-													// onAddPost={props.onAddPost}
-				/>
+				<MyPostsReduxForm onSubmit={addPostsForm}/>
 
 			</div>
 			<div className={s.posts}>

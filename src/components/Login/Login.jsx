@@ -2,18 +2,16 @@ import React from "react";
 import s from "./Login.module.css"
 import {LoginReduxForm} from "./LoginForm/LoginForm";
 
-class Login extends React.Component {
-	 onSubmit = (formData) => {
+const Login = (props) => {
+	let onSubmit = (formData) => {
 		console.log(formData)
 	}
-	render(){
 	return (
 		<div className={s.login}>
 			<h1> Login </h1>
-			<LoginReduxForm onSubmit={this.onSubmit}/>
+			<LoginReduxForm onSubmit={onSubmit}/>
 		</div>
 	)
-	}
 }
 
 export default Login

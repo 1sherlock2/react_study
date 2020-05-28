@@ -14,12 +14,7 @@ const News = (props) => {
 				<h1> News today </h1>
 			</div>
 			<div className={s.action}>
-				<NewsPostReduxFrom onSubmit={addNewsForm}
-													 // onSubmit={props.onSubmit}
-													 // onTextareaChangesNewsPost={props.onTextareaChangesNewsPost}
-													 // newsElement={props.newsElement} currentNewsData={props.currentNewsData}
-													 // onAddNews={props.onAddNews}
-				/>
+				<NewsPostReduxFrom onSubmit={addNewsForm}/>
 			</div>
 			<div className={s.news_posts}>
 				{mapNews_post}

@@ -10,31 +10,15 @@ class NewsContainer extends React.Component {
 		super(props);
 	}
 
-	// newsElement = React.createRef();
-	// onTextareaChangesNewsPost = () => {
-	// 	let text = this.newsElement.current.value
-	// 	this.props.textareaChangesNewsPost(text);
-	// }
-	// onAddNews = () => {
-	// 	this.props.addNews();
-	// }
-
 	render() {
 		return <News addNews={this.props.addNews}
-			newsPosts={this.props.newsPosts}
-			// onAddNews={this.onAddNews}
-			// newsElement={this.newsElement}
-			// onTextareaChangesNewsPost={this.onTextareaChangesNewsPost}
-			// currentNewsData={this.props.currentNewsData}
-		/>
+								 newsPosts={this.props.newsPosts}/>
 	}
 }
-
 
 let mapStateToProps = (state) => {
 	return {
 		newsPosts: state.newsData.newsPosts,
-		// currentNewsData: state.newsData.currentNewsData,
 	}
 }
 

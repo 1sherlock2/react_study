@@ -33,8 +33,6 @@ let authReducer = (state = initialState, action) => {
 
 export const setUserData = (userId, email, login) => ({type: SET_USER_DATA, data: {email, userId, login}});
 
-
-
 export const authThunk = () => {
 	return (dispatch) => {
 		userAPI.usersAuthFromServer().then(data => {
@@ -45,5 +43,6 @@ export const authThunk = () => {
 		})
 	}
 }
+
 
 export default authReducer;
