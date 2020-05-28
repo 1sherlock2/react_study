@@ -6,6 +6,7 @@ import {
 	maxLengthCreator, minLengthCreator,
 	requiredFiled
 } from "../../../Utils/Validator/Validator";
+import style from "../../Common/FromControls/FormControl.module.css"
 
 let maxLength20 = maxLengthCreator(30)
 let minLength5 = minLengthCreator(5)
@@ -24,6 +25,11 @@ const LoginForm = (props) => {
 				<div>
 					<Field component={'input'} name={'rememberMe'} type="checkbox"/>
 				</div>
+				{ props.error
+					? <div className={style.formSummaryError}>
+							{props.error}
+						</div>
+					: null }
 				<div>
 					<button> Login</button>
 				</div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from "./Profile";
 import {
-	profileServerThunk,
+	profileServerThunk, putPhotoThunk,
 	setUserProfile,
 	setUserStatusThunk,
 	toggleIsFetchingLoad, updateUserStatusThunk
@@ -20,7 +20,7 @@ class ProfileContainer extends React.Component {
 	componentDidMount() {
 		let userId = this.props.match.params.userId;
 		if (!userId) {
-			userId = 7936;
+			userId = this.props.userId;
 		}
 		this.props.profileServerThunk(userId)
 		this.props.setUserStatusThunk(userId)
@@ -36,6 +36,8 @@ let mapStateToProps = (state) => ({
 	profile: state.postData.profile,
 	isFetching: state.postData.isFetching,
 	status: state.postData.status,
+	photo: state.postData.photo,
+	userId: state.authData.userId,
 })
 
 export default compose(
