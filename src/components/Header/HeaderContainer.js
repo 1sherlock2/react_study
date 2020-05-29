@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import { logoutThunk, setUserData} from "../../redux/Auth_reducer";
+import { logoutThunk, setUserData} from "../../redux/Reducers/Auth_reducer";
 import {connect} from "react-redux";
 
 

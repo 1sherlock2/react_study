@@ -4,11 +4,16 @@ import {
 	changeCurrentPage,
 	Follow, getUsersThunk, toggleIsFollowingProgress,
 	unFollow
-} from "../../redux/Users_reducer";
+} from "../../redux/Reducers/Users_reducer";
 import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
-import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
-import {compose} from "redux";
+import {
+	currentPageState, isAuthState,
+	isFetchingState, isFollowingProgressState,
+	pageSizeState,
+	totalCountState,
+	usersState
+} from "../../redux/Selectors/Users_selectors";
 
 
 class UsersContainer extends React.Component {
@@ -43,15 +48,27 @@ class UsersContainer extends React.Component {
 	}
 }
 
+// let mapStateToProps = (state) => {
+// 	return {
+// 		users: state.usersData.users,
+// 		pageSize: state.usersData.pageSize,
+// 		totalCount: state.usersData.totalCount,
+// 		currentPage: state.usersData.currentPage,
+// 		isFetching: state.usersData.isFetching,
+// 		isFollowingProgress: state.usersData.isFollowingProgress,
+// 		isAuth: state.authData.isAuth,
+// 	}
+// }
+
 let mapStateToProps = (state) => {
 	return {
-		users: state.usersData.users,
-		pageSize: state.usersData.pageSize,
-		totalCount: state.usersData.totalCount,
-		currentPage: state.usersData.currentPage,
-		isFetching: state.usersData.isFetching,
-		isFollowingProgress: state.usersData.isFollowingProgress,
-		isAuth: state.authData.isAuth,
+		users: usersState(state),
+		pageSize: pageSizeState(state),
+		totalCount: totalCountState(state),
+		currentPage: currentPageState(state),
+		isFetching: isFetchingState(state),
+		isFollowingProgress:isFollowingProgressState(state),
+		isAuth: isAuthState(state),
 	}
 }
 

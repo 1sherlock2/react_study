@@ -1,5 +1,5 @@
 import React from "react";
-import {addNews} from "../../redux/News_reducer";
+import {addNews} from "../../redux/Reducers/News_reducer";
 import {connect} from "react-redux";
 import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
 import {compose} from "redux";

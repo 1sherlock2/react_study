@@ -5,7 +5,7 @@ import {
 	setUserProfile,
 	setUserStatusThunk,
 	toggleIsFetchingLoad, updateUserStatusThunk
-} from "../../redux/Profile_reducer";
+} from "../../redux/Reducers/Profile_reducer";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";

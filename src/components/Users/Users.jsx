@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Users.module.css";
 import userPhoto from "../../img/apa6.jpg";
 import {NavLink} from "react-router-dom";
-import {followThunk, unFollowThunk} from "../../redux/Users_reducer";
+import {followThunk, unFollowThunk} from "../../redux/Reducers/Users_reducer";
 
 
 const Users = (props) => {

@@ -1,4 +1,4 @@
-import {userAPI} from "../API/API";
+import {userAPI} from "../../API/API";
 
 const SET_USERS = "SET_USERS";
 const FOLLOW = "FOLLOW";
@@ -74,6 +74,7 @@ export const toggleIsFollowingProgress = (isFollowingProgress, userId) => ({
 export const getUsersThunk = (currentPage, pageSize) => {
 	return (dispatch) => {
 		dispatch(toggleIsFetching(true))
+		dispatch(changeCurrentPage(currentPage))
 		userAPI.getUsers(currentPage, pageSize).then(data => {
 			dispatch(toggleIsFetching(false))
 			dispatch(setUsers(data.items))

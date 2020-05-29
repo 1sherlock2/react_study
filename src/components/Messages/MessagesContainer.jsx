@@ -3,7 +3,7 @@ import Messages from "./Messages";
 import {connect} from "react-redux";
 import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
 import {compose} from "redux";
-import {addMessages} from "../../redux/Messages_reducer";
+import {addMessages} from "../../redux/Reducers/Messages_reducer";
 
 
 class MessagesContainer extends React.Component {

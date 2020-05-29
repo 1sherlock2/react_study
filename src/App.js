@@ -11,9 +11,9 @@ import Login from "./components/Login/Login";
 import MusicContainer from "./components/Music/MusicContainer";
 import SettingsContainer from "./components/Settings/SettingsContainer";
 import {connect} from "react-redux";
-import {authThunk} from "./redux/Auth_reducer";
+import {authThunk} from "./redux/Reducers/Auth_reducer";
 import {compose} from "redux";
-import {initializedThunk} from "./redux/App_reducer";
+import {initializedThunk} from "./redux/Reducers/App_reducer";
 import Preloader from "./components/Common/Preloader/Preloader";
 
 
