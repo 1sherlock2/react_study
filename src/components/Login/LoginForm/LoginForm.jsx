@@ -26,7 +26,7 @@ const LoginForm = (props) => {
 					<Field component={'input'} name={'rememberMe'} type="checkbox"/>
 				</div>
 				{ props.error
-					? <div className={style.formSummaryError}>
+					? <div className={style.formSummaryError}>   {/* {props.error} -> свойство, которое присутствует в методе onSubmit у 'redux-form' */}
 							{props.error}
 						</div>
 					: null }

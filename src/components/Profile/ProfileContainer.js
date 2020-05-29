@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from "./Profile";
 import {
-	profileServerThunk, putPhotoThunk,
+	profileServerThunk,
 	setUserProfile,
 	setUserStatusThunk,
 	toggleIsFetchingLoad, updateUserStatusThunk
@@ -13,14 +13,14 @@ import {compose} from "redux";
 
 
 class ProfileContainer extends React.Component {
-	constructor(props) {
-		super(props);
-	}
 
 	componentDidMount() {
 		let userId = this.props.match.params.userId;
 		if (!userId) {
 			userId = this.props.userId;
+			if(!userId) {
+				userId = this.props.history.push("login")
+			}
 		}
 		this.props.profileServerThunk(userId)
 		this.props.setUserStatusThunk(userId)
@@ -47,7 +47,5 @@ export default compose(
 		toggleIsFetchingLoad,
 		profileServerThunk,
 		updateUserStatusThunk,
-	}),
-	withRouter,
-	authRedirectComponent,
+	}), withRouter, authRedirectComponent,
 )(ProfileContainer)

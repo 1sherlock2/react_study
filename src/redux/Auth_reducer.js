@@ -5,12 +5,13 @@ const SET_USER_DATA = 'SET_USER_DATA';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
-	userId: null,
+
 	email: null,
+	userId: null,
 	login: null,
 	password: null,
-	isFetching: false,
 	isAuth: false,
+	isFetching: false,
 };
 
 let authReducer = (state = initialState, action) => {
@@ -33,14 +34,14 @@ let authReducer = (state = initialState, action) => {
 
 export const setUserData = (userId, email, login, isAuth) => ({
 	type: SET_USER_DATA,
-	payLoad: {email, userId, login, isAuth}
+	payLoad: {email: email, userId: userId, login: login, isAuth: isAuth,}
 });
 
 export const authThunk = () => (dispatch) => {
 	authAPI.usersAuthFromServer().then(response => {
 		if (response.resultCode === 0) {
-			let {email, id, login} = response.data;
-			dispatch(setUserData(email, id, login, true));
+			let {id, email, login} = response.data;															// !!! осторожно с порядком присваивания, оно должно совпадать с порядком что присутствует на сервере
+			dispatch(setUserData(id, email, login, true));
 		}
 	})
 };
@@ -50,8 +51,8 @@ export const loginThunk = (email, password, rememberMe) => (dispatch) => {
 		if (response.resultCode === 0) {
 			dispatch(authThunk())
 		} else {
-			let message = response.messages.length > 0 ? response.messages[0] : "Some error";								 // при невыполнении 'resultCode' должны высветить сообщения об ошибке, (текс сообщения об ошибке берем из сервера (messages))
-			dispatch(stopSubmit('login', {_error: message}))  																   // ! Важная строка для понимания работы возврата функции 'dispatch'. formSubmit берем из библиотеки 'redux-form'
+			let message = response.messages.length > 0 ? response.messages[0] : "Some error";			// при невыполнении 'resultCode' должны высветить сообщения об ошибке, (текс сообщения об ошибке берем из сервера (messages))
+			dispatch(stopSubmit('login', {_error: message}))  																	  // ! Важная строка для понимания работы возврата функции 'dispatch'. formSubmit берем из библиотеки 'redux-form'
 		}
 	})
 }

@@ -14,6 +14,5 @@ export const authRedirectComponent = (Component) => {
 			return <Component {...this.props} />
 		}
 	}
-	let ConnectedAuthRedirectComponent = connect(mapStateToPropsFromRedirect)(RedirectComponent)
-	return ConnectedAuthRedirectComponent;
+	 return connect(mapStateToPropsFromRedirect)(RedirectComponent)
 }

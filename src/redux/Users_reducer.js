@@ -99,7 +99,7 @@ export const unFollowThunk = (id) => {
 		dispatch(toggleIsFollowingProgress(true, id));
 		userAPI.buttonUnFollowDeleteFromServer(id).then(data => {
 			dispatch(toggleIsFollowingProgress(false, id));
-			if (data.resultCode == 0) {
+			if (data.resultCode === 0) {
 				dispatch(unFollow(id));
 			}
 		})

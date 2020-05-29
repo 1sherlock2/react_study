@@ -9,7 +9,6 @@ const Login = (props) => {
 	let onSubmit = (formData) => {
 		props.loginThunk(formData.email, formData.password, formData.rememberMe) 						//можно применить реструктуризацию
 	}
-
 	if (props.isAuth === true) {
 		return <Redirect to={"/profile"}/>
 	} else {
@@ -21,7 +20,6 @@ const Login = (props) => {
 		)
 	}
 }
-
 
 let mapStateToProps = (state) => {
 	return {
