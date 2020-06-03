@@ -3,18 +3,17 @@ import s from "../Profile_info.module.css";
 
 
 class ProfileStatus extends React.Component {
-	// constructor(props) {
-	// 	super(props);
-	// 	this.state = {
-	// 		editMode: false,
-	// 		status: this.props.status,
-	// 	}
-	// }
-
-	state = {
-		editMode: false,
-		status: this.props.status,
+	constructor(props) {
+		super(props);
+		this.state = {
+			editMode: false,
+			status: this.props.status,
+		}
 	}
+	// state = {
+	// 	editMode: false,
+	// 	status: this.props.status,
+	// }
 	activateEditMode = () => {
 		this.setState({editMode: true})
 	}
