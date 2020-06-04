@@ -1,6 +1,7 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
 import s from "../Messages.module.css"
+import {Textarea} from "../../Common/FromControls/Textarea/Textarea";
 
 const MessagesForm = (props) => {
 	return (
@@ -8,10 +9,7 @@ const MessagesForm = (props) => {
 			<form className='col s12' onSubmit={props.handleSubmit}>
 				<div className='row'>
 					<div className='input-field col s1'>
-						<Field id='textarea1' className='materialize-textarea' component={'textarea'} name={'message'}
-							// value={props.currentDialogsData}
-							// onChange={props.onTextareaChangesInMessages}
-						/>
+						<Field id='textarea1' className='materialize-textarea' component={Textarea} name={'message'}/>
 						<label htmlFor="textarea1">Message</label>
 						<div className={s.messagesFromButton}>
 							<button className="btn waves-effect waves-light" type="submit" name="action"> Send

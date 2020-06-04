@@ -1,5 +1,6 @@
+/* eslint-disable import/first */
 const ADD_MESSAGES = 'ADD_MESSAGES';
-// const TEXTAREA_CHANGES_MESSAGES = "TEXTAREA_CHANGES_MESSAGES";
+import {reset} from 'redux-form';
 
 let initialState = {
 	companionsData: [
@@ -19,19 +20,11 @@ const messagesReducer = (state = initialState, action) => {
 				...state,
 				dialogsData: [...state.dialogsData, {id: 5, message: action.message,}],
 			}
-		// case TEXTAREA_CHANGES_MESSAGES:
-		// 	return {
-		// 		...state,
-		// 		currentDialogsData: action.text,
-		// 	}
 		default:
 			return state;
 	}
 }
 
 export const addMessages = (message) => ({type: ADD_MESSAGES, message});
-
-// export const textareaChangesInMessages = (text) => ({type: TEXTAREA_CHANGES_MESSAGES, text: text,});
-
-
+export const resetAddMessages = (message) => (reset(message))
 export default messagesReducer;

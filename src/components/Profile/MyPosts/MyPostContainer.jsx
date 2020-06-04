@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPost} from "../../../redux/Reducers/Profile_reducer";
+import {addPost, resetForm} from "../../../redux/Reducers/Profile_reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
@@ -10,6 +10,7 @@ class MyPostContainer extends React.Component {
 	render() {
 		return <MyPosts posts={this.props.posts}
 										addPost={this.props.addPost}
+										resetForm={this.props.resetForm}
 		/>
 	}
 }
@@ -21,5 +22,5 @@ let mapStateToProps = (state) => {												// благодаря 'mapStateToP
 	}
 };
 
-export default connect(mapStateToProps, {addPost})(MyPostContainer)
+export default connect(mapStateToProps, {addPost,resetForm})(MyPostContainer)
 

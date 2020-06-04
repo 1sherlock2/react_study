@@ -1,4 +1,5 @@
-import {profileAPI, userAPI} from "../../API/API";
+import {profileAPI} from "../../API/API";
+import {reset} from 'redux-form';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -7,9 +8,9 @@ const SET_USER_STATUS = 'SET_USER_STATUS';
 
 let initialState = {
 	posts: [
-		// {id:5, message:'Yoy', likeCount: 2,},
-		// {id:6, message:'Yoy', likeCount: 2,},
-		// {id:7, message:'Yoy', likeCount: 2,}
+		{id: 5, message: 'Hi, how are you', likeCount: 2, photo: null},
+		{id: 6, message: 'I am fine thanks', likeCount: 2, photo: null},
+		{id: 7, message: 'It is greate', likeCount: 2, photo: null}
 	],
 	profile: null,
 	status: null,
@@ -44,6 +45,7 @@ const profileReducer = (state = initialState, action) => {
 }
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status: status})
 export const addPost = (post) => ({type: ADD_POST, post});
+export const resetForm = (myPost) => (reset(myPost));
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile});
 export const toggleIsFetchingLoad = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching: isFetching});
 
