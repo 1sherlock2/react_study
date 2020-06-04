@@ -6,7 +6,11 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 
 let initialState = {
-	posts: [],
+	posts: [
+		// {id:5, message:'Yoy', likeCount: 2,},
+		// {id:6, message:'Yoy', likeCount: 2,},
+		// {id:7, message:'Yoy', likeCount: 2,}
+	],
 	profile: null,
 	status: null,
 	isFetching: false,

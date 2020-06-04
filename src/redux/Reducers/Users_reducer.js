@@ -83,26 +83,26 @@ export const getUsersThunk = (currentPage, pageSize) => {
 	}
 }
 
-export const followThunk = (id) => {
+export const followThunk = (userId) => {
 	return (dispatch) => {
-		dispatch(toggleIsFollowingProgress(false, id));
-		userAPI.buttonFollowPostFromServer(id).then(data => {
-			dispatch(toggleIsFollowingProgress(true, id));
-			if (data.resultCode === 0) {
-				dispatch(Follow(id));
+		dispatch(toggleIsFollowingProgress(true, userId));
+		userAPI.buttonFollowPostFromServer(userId).then(response => {
+			if (response.data.resultCode === 0) {
+				dispatch(Follow(userId));
 			}
+			dispatch(toggleIsFollowingProgress(false, userId));
 		})
 	}
 }
 
-export const unFollowThunk = (id) => {
+export const unFollowThunk = (userId) => {
 	return (dispatch) => {
-		dispatch(toggleIsFollowingProgress(true, id));
-		userAPI.buttonUnFollowDeleteFromServer(id).then(data => {
-			dispatch(toggleIsFollowingProgress(false, id));
-			if (data.resultCode === 0) {
-				dispatch(unFollow(id));
+		dispatch(toggleIsFollowingProgress(true, userId));
+		userAPI.buttonUnFollowDeleteFromServer(userId).then(response => {
+			if (response.data.resultCode === 0) {
+				dispatch(unFollow(userId));
 			}
+			dispatch(toggleIsFollowingProgress(false, userId));
 		})
 	}
 }

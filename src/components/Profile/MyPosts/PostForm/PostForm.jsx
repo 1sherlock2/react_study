@@ -1,16 +1,20 @@
 import React from "react";
-import s from "../MyPosts.module.css";
 import {Field, reduxForm} from "redux-form";
-import { maxLengthCreator, requiredFiled} from "../../../../Utils/Validator/Validator";
+import {maxLengthCreator, requiredFiled} from "../../../../Utils/Validator/Validator";
 import {Textarea} from "../../../Common/FromControls/Textarea/Textarea";
 
 
-let maxLength10 = maxLengthCreator(10)
+let maxLength10 = maxLengthCreator(100)
 const PostForm = (props) => {
 	return (
-		<form onSubmit={props.handleSubmit}>
-			<Field component={Textarea} name={'myPost'} validate={[requiredFiled,maxLength10]}/>
-			<button> Add post </button>
+		<form className='col s12' onSubmit={props.handleSubmit}>
+			<div className='row'>
+				<div className='input-field col s6'>
+					<Field component={Textarea} name={'myPost'} validate={[requiredFiled, maxLength10]} id="icon_prefix2"
+								 class="materialize-textarea"/>
+					<button className="btn waves-effect waves-light" type="submit" name="action">Send</button>
+				</div>
+			</div>
 		</form>
 	)
 }

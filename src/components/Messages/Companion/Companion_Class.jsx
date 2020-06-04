@@ -1,9 +1,9 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import s from "./Companion.module.css";
 import {NavLink} from "react-router-dom";
 
 
-class Companion extends React.Component {
+class Companion extends PureComponent {
 	constructor(props) {
 		super(props);
 	 	this.path = '/messages/' + this.props.id;

@@ -6,6 +6,7 @@ import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import store from "./redux/redux_store/redux_store";
 import {Provider} from "react-redux";
+import 'materialize-css/dist/css/materialize.css'
 
 let rerenderEntireTree = () => {																							// создаем функцию, которая в качестве параметра будет передавать наши данные
 	ReactDOM.render(

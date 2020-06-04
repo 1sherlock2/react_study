@@ -5,19 +5,30 @@ import {NavLink} from "react-router-dom";
 const Header = (props) => {
 	return (
 		<header className={s.header}>
-			<div className={s.header_img}>
-				<img src='../../img/logo.jpg'/>
-			</div>
-			<div className={s.auth_small}>
+			<nav>
 				{props.isAuth
-					? <div>
-							<div>{props.login}</div>
-							<button onClick={props.logoutThunk}> Logout </button>
+					?
+					<div className="nav-wrapper">
+						<div className="col s12">
+							<NavLink to="/profile" className="breadcrumb"> {props.login} </NavLink>
+						<button className='btn logout' onClick={props.logoutThunk}> Logout </button>
 						</div>
-					: <NavLink to={'/login'}> Login </NavLink>}
-			</div>
+					</div>
+					: <NavLink className="waves-effect waves-light btn logout" to={'/login'}><i className="material-icons left"> Login </i> </NavLink>}
+			</nav>
 		</header>
 	)
 }
+// <a className="waves-effect waves-light btn"><i className="material-icons left">cloud</i>button</a>
+
+// <nav>
+// 	<div className="nav-wrapper">
+// 		<div className="col s12">
+// 			<a href="#!" className="breadcrumb">First</a>
+// 			<a href="#!" className="breadcrumb">Second</a>
+// 			<a href="#!" className="breadcrumb">Third</a>
+// 		</div>
+// 	</div>
+// </nav>
 
 export default Header;

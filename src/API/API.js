@@ -20,14 +20,10 @@ export const userAPI = {
 		return profileAPI.profileFromServer(userId);
 	},
 	buttonFollowPostFromServer(userId) {
-		return instance.post(`follow/${userId}`).then(response => {
-			return response.data;
-		})
+		return instance.post(`follow/${userId}`)
 	},
 	buttonUnFollowDeleteFromServer(userId) {
-		return instance.delete(`follow/${userId}`).then(response => {
-			return response.data;
-		})
+		return instance.delete(`follow/${userId}`)
 	}
 }
 
@@ -52,9 +48,7 @@ export const authAPI = {
 		})
 	},
 	loginFromServer(email,password,rememberMe) {
-		return instance.post(`auth/login`, {email, password, rememberMe}).then(response => {
-			return response.data;
-		})
+		return instance.post(`auth/login`, {email, password, rememberMe})
 	},
 	logoutFromServer() {
 		return instance.delete(`auth/login`).then(response => {

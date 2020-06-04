@@ -7,22 +7,9 @@ class MyPostContainer extends React.Component {
 	constructor(props) {
 		super(props);
 	}
-
-	// newPostElements = React.createRef();
-	// onTextareaChanges = () => {
-	// 	this.props.textareaChanges(this.newPostElements.current.value);
-	// }
-	// onAddPost = () => {
-	// 	this.props.addPost();
-	// }
-
 	render() {
 		return <MyPosts posts={this.props.posts}
 										addPost={this.props.addPost}
-			// newPostElements={this.newPostElements}
-			// currentText={this.props.currentText}
-			// onTextareaChanges={this.onTextareaChanges}
-			// onAddPost={this.onAddPost}
 		/>
 	}
 }
