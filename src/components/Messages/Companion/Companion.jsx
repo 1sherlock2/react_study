@@ -1,22 +1,24 @@
-// import React from "react";
-// import s from "./Companion.module.css";
-// import {NavLink} from "react-router-dom";
-//
-//
-// const Companion = (props) => {
-// 	let path = '/messages/' + this.props.id;
-//
-// 	return (
-// 		<div className={s.companions}>
-// 			<NavLink to={path} className={s.companions_items}>
-// 				<div className={s.companion}>
-// 					<p>
-// 						{this.props.name}
-// 					</p>
-// 				</div>
-// 			</NavLink>
-// 		</div>
-// 	)
-// }
-//
-// export default Companion;
+import React, {PureComponent} from "react";
+import {NavLink} from "react-router-dom";
+import s from "../Messages.module.css";
+
+class Companion extends PureComponent {
+	constructor(props) {
+		super(props);
+		this.path = '/messages/' + this.props.id;
+	}
+
+	render() {
+		return (
+			<div className='collection'>
+				<NavLink to={this.path} className="collection-item">
+					{this.props.name}
+				</NavLink>
+			</div>
+		)
+	}
+}
+
+// <div>Alvin<a href="#!" className="secondary-content"><i className="material-icons">send</i></a></div>
+
+export default Companion;

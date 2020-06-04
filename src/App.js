@@ -27,13 +27,11 @@ class App extends React.Component {
 			return <Preloader/>
 		}
 		return (
-			// <div className='app_wrapper'>
 			<div className='row'>
 				<HeaderContainer/>
 				<div className='col s3'>
 					<Navbar/>
 				</div>
-				{/*<div className="app_wrapper_content">*/}
 					<div className="col s9">
 						<Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
 						<Route path="/messages" render={() => <MessagesContainer/>}/>

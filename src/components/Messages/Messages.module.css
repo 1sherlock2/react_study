@@ -1,32 +1,62 @@
 .messages {
 	display: grid;
-	grid-template-areas: "d c"
-											 "d m";
-	grid-template-columns: 0.3fr 1fr;
-	grid-gap: 40px;
-	margin: 40px auto;
-	text-align: center;
-}
-.companion {
-	border-right: 1px solid antiquewhite;
+	grid-template-areas: "c d";
+	margin: 2% auto;
 }
 
-.messagesAdd {
-	width: 100%;
-	grid-area: m;
-	grid-gap: 10px;
+.companion_element {
+	grid-area: c;
+	width: 50%;
 }
 
-.messagesAdd textarea {
-	width: 60%;
-	height:100%;
-	border-radius: 10%;
-	border: 2px solid dodgerblue;
-}
-
-.messagesAdd button {
-	width: 4%;
-	height: 2.5%;
-	font-size: 10px;
+.dialogs {
+	grid-area: d;
+	position: relative;
 	text-align: left;
+	margin-left: -25%;
+	margin-top: -10%;
+	width: 100%;
 }
+
+.message_element {
+
+}
+
+.dialogs_messages {
+
+}
+
+.messages_form {
+	margin: 10% auto auto 2%;
+	width: 100%;
+}
+
+.messagesFromButton {
+	position: relative;
+	text-align: right;
+}
+
+/*.companion {*/
+/*	border-right: 1px solid antiquewhite;*/
+/*}*/
+
+/*.messagesAdd {*/
+/*	width: 100%;*/
+/*	grid-area: m;*/
+/*	grid-gap: 10px;*/
+/*}*/
+
+/*.messagesAdd textarea {*/
+/*	width: 60%;*/
+/*	height:100%;*/
+/*	border-radius: 10%;*/
+/*	border: 2px solid dodgerblue;*/
+/*}*/
+
+/*.messagesAdd button {*/
+/*	width: 4%;*/
+/*	height: 2.5%;*/
+/*	font-size: 10px;*/
+/*	text-align: left;*/
+/*}*/
+

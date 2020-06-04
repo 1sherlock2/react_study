@@ -1,10 +1,10 @@
 import React from "react";
-import s from "./Dialogs.module.css";
+import s from "../Messages.module.css";
 
 
 const Dialogs = React.memo(props => {
 	return (
-		<div className={s.dialogs}>
+		<div className={s.dialogs_messages}>
 			{props.message}
 		</div>
 	)
