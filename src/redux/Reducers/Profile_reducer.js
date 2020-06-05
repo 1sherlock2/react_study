@@ -57,25 +57,22 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: pr
 export const toggleIsFetchingLoad = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching: isFetching});
 export const resetForm = (myPost) => (reset(myPost));
 
-export const profileServerThunk = (userId) => (dispatch) => {
+export const profileServerThunk = (userId) => async (dispatch) => {
 	dispatch(toggleIsFetchingLoad(true));
-	profileAPI.profileFromServer(userId).then(response => {
-		dispatch(toggleIsFetchingLoad(false));
-		dispatch(setUserProfile(response))
-	})
+	let response = await profileAPI.profileFromServer(userId)
+	dispatch(toggleIsFetchingLoad(false));
+	dispatch(setUserProfile(response))
 }
 
-export const setUserStatusThunk = (userId) => (dispatch) => {
-	profileAPI.getStatus(userId).then(response => {
-		dispatch(setUserStatus(response.data));
-	});
+export const setUserStatusThunk = (userId) => async (dispatch) => {
+	let response = await profileAPI.getStatus(userId)
+	dispatch(setUserStatus(response.data));
 }
-export const updateUserStatusThunk = (status) => (dispatch) => {
-	profileAPI.updateStatus(status).then(response => {
-		if (response.data.resultCode === 0) {
-			dispatch(setUserStatus(status));
-		}
-	});
+export const updateUserStatusThunk = (status) => async (dispatch) => {
+	let response = await profileAPI.updateStatus(status)
+	if (response.data.resultCode === 0) {
+		dispatch(setUserStatus(status));
+	}
 }
 
 export default profileReducer;

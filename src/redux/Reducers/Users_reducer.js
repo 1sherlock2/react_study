@@ -71,40 +71,31 @@ export const toggleIsFollowingProgress = (isFollowingProgress, userId) => ({
 })
 
 
-export const getUsersThunk = (currentPage, pageSize) => {
-	return (dispatch) => {
-		dispatch(toggleIsFetching(true))
-		dispatch(changeCurrentPage(currentPage))
-		userAPI.getUsers(currentPage, pageSize).then(data => {
-			dispatch(toggleIsFetching(false))
-			dispatch(setUsers(data.items))
-			dispatch(setTotalUsersCount(data.totalCount))
-		})
-	}
+export const getUsersThunk = (currentPage, pageSize) => async (dispatch) => {
+	let apiMetods = userAPI.getUsers.bind(userAPI)																		// можно и без bind, но для предотвращения возникновения ошибок привязываем наш 'action' к данному запросу из сервера
+	dispatch(toggleIsFetching(true))
+	dispatch(changeCurrentPage(currentPage))
+	let response = await apiMetods(currentPage, pageSize)
+	dispatch(toggleIsFetching(false))
+	dispatch(setUsers(response.items))
+	dispatch(setTotalUsersCount(response.totalCount))
 }
 
-export const followThunk = (userId) => {
-	return (dispatch) => {
-		dispatch(toggleIsFollowingProgress(true, userId));
-		userAPI.buttonFollowPostFromServer(userId).then(response => {
-			if (response.data.resultCode === 0) {
-				dispatch(Follow(userId));
-			}
-			dispatch(toggleIsFollowingProgress(false, userId));
-		})
+let similarToggleThunkFollow = async (dispatch,userId,apiMethods,actionToggleFollow) => {																// рефакторинг следующих двух thunks
+	dispatch(toggleIsFollowingProgress(true, userId));
+	let response = await apiMethods(userId)
+	if (response.data.resultCode === 0) {
+		dispatch(actionToggleFollow(userId));
 	}
+	dispatch(toggleIsFollowingProgress(false, userId));
 }
 
-export const unFollowThunk = (userId) => {
-	return (dispatch) => {
-		dispatch(toggleIsFollowingProgress(true, userId));
-		userAPI.buttonUnFollowDeleteFromServer(userId).then(response => {
-			if (response.data.resultCode === 0) {
-				dispatch(unFollow(userId));
-			}
-			dispatch(toggleIsFollowingProgress(false, userId));
-		})
-	}
+export const followThunk = (userId) => async (dispatch) => {
+	await similarToggleThunkFollow(dispatch, userId, userAPI.buttonFollowPostFromServer.bind(userAPI)	, Follow)						// можно и без bind, но для предотвращения возникновения ошибок привязываем наш 'action' к данному запросу из сервера
+}
+
+export const unFollowThunk = (userId) => async (dispatch) => {
+	await similarToggleThunkFollow(dispatch, userId, userAPI.buttonUnFollowDeleteFromServer.bind(userAPI), unFollow)
 }
 
 export default usersReducer;
