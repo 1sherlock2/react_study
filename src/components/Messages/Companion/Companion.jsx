@@ -19,6 +19,5 @@ class Companion extends PureComponent {
 	}
 }
 
-// <div>Alvin<a href="#!" className="secondary-content"><i className="material-icons">send</i></a></div>
 
 export default Companion;

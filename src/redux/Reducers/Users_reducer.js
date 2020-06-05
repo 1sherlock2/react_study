@@ -40,7 +40,7 @@ let usersReducer = (state = initialState, action) => {
 				})
 			}
 		case CHANGE_CURRENT_PAGE:
-			return {...state, currentPage: action.page,}
+			return {...state, currentPage: action.currentPage,}
 		case SET_TOTAL_USERS_COUNT:
 			return {...state, totalCount: action.totalCount,}
 		case TOGGLE_IS_FETCHING:
@@ -58,7 +58,7 @@ let usersReducer = (state = initialState, action) => {
 }
 
 
-export const changeCurrentPage = (page) => ({type: CHANGE_CURRENT_PAGE, page: page})	// call-back функция, которая возвращает объект, в параметрах которого мы обозначаем те данные которые мы хотим изменить и передать в свойства значения.
+export const changeCurrentPage = (page) => ({type: CHANGE_CURRENT_PAGE, currentPage: page})	// call-back функция, которая возвращает объект, в параметрах которого мы обозначаем те данные которые мы хотим изменить и передать в свойства значения.
 export const setUsers = (users) => ({type: SET_USERS, users: users});
 export const Follow = (userId) => ({type: FOLLOW, userId: userId});
 export const unFollow = (userId) => ({type: UN_FOLLOW, userId: userId});

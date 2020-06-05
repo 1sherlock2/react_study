@@ -11,7 +11,6 @@ import Login from "./components/Login/Login";
 import MusicContainer from "./components/Music/MusicContainer";
 import SettingsContainer from "./components/Settings/SettingsContainer";
 import {connect} from "react-redux";
-import {authThunk} from "./redux/Reducers/Auth_reducer";
 import {compose} from "redux";
 import {initializedThunk} from "./redux/Reducers/App_reducer";
 import Preloader from "./components/Common/Preloader/Preloader";
@@ -25,13 +24,13 @@ class App extends React.Component {
 	render() {
 		if (!this.props.initialized) {
 			return <Preloader/>
-		}
-		return (
-			<div className='row'>
-				<HeaderContainer/>
-				<div className='col s3'>
-					<Navbar/>
-				</div>
+		} else {
+			return (
+				<div className='row'>
+					<HeaderContainer/>
+					<div className='col s3'>
+						<Navbar/>
+					</div>
 					<div className="col s9">
 						<Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
 						<Route path="/messages" render={() => <MessagesContainer/>}/>
@@ -41,8 +40,9 @@ class App extends React.Component {
 						<Route path="/settings" render={() => <SettingsContainer/>}/>
 						<Route path="/login" render={() => <Login/>}/>
 					</div>
-			</div>
-		)
+				</div>
+			)
+		}
 	}
 }
 
@@ -51,4 +51,4 @@ const mapStateToProps = (state) => ({
 	isAuth: state.authData.isAuth,
 })
 
-export default compose(withRouter, connect(mapStateToProps, {initializedThunk, authThunk}))(App)
+export default compose(withRouter, connect(mapStateToProps, {initializedThunk}))(App)
