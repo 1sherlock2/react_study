@@ -40,7 +40,7 @@ let usersReducer = (state = initialState, action) => {
 				})
 			}
 		case CHANGE_CURRENT_PAGE:
-			return {...state, currentPage: action.page,}
+			return {...state, currentPage: action.currentPage,}
 		case SET_TOTAL_USERS_COUNT:
 			return {...state, totalCount: action.totalCount,}
 		case TOGGLE_IS_FETCHING:
@@ -58,7 +58,7 @@ let usersReducer = (state = initialState, action) => {
 }
 
 
-export const changeCurrentPage = (page) => ({type: CHANGE_CURRENT_PAGE, page: page})	// call-back функция, которая возвращает объект, в параметрах которого мы обозначаем те данные которые мы хотим изменить и передать в свойства значения.
+export const changeCurrentPage = (page) => ({type: CHANGE_CURRENT_PAGE, currentPage: page})	// call-back функция, которая возвращает объект, в параметрах которого мы обозначаем те данные которые мы хотим изменить и передать в свойства значения.
 export const setUsers = (users) => ({type: SET_USERS, users: users});
 export const Follow = (userId) => ({type: FOLLOW, userId: userId});
 export const unFollow = (userId) => ({type: UN_FOLLOW, userId: userId});
@@ -83,26 +83,26 @@ export const getUsersThunk = (currentPage, pageSize) => {
 	}
 }
 
-export const followThunk = (id) => {
+export const followThunk = (userId) => {
 	return (dispatch) => {
-		dispatch(toggleIsFollowingProgress(false, id));
-		userAPI.buttonFollowPostFromServer(id).then(data => {
-			dispatch(toggleIsFollowingProgress(true, id));
-			if (data.resultCode === 0) {
-				dispatch(Follow(id));
+		dispatch(toggleIsFollowingProgress(true, userId));
+		userAPI.buttonFollowPostFromServer(userId).then(response => {
+			if (response.data.resultCode === 0) {
+				dispatch(Follow(userId));
 			}
+			dispatch(toggleIsFollowingProgress(false, userId));
 		})
 	}
 }
 
-export const unFollowThunk = (id) => {
+export const unFollowThunk = (userId) => {
 	return (dispatch) => {
-		dispatch(toggleIsFollowingProgress(true, id));
-		userAPI.buttonUnFollowDeleteFromServer(id).then(data => {
-			dispatch(toggleIsFollowingProgress(false, id));
-			if (data.resultCode === 0) {
-				dispatch(unFollow(id));
+		dispatch(toggleIsFollowingProgress(true, userId));
+		userAPI.buttonUnFollowDeleteFromServer(userId).then(response => {
+			if (response.data.resultCode === 0) {
+				dispatch(unFollow(userId));
 			}
+			dispatch(toggleIsFollowingProgress(false, userId));
 		})
 	}
 }

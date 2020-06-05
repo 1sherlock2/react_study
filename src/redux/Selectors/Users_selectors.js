@@ -5,10 +5,6 @@ export const usersState = (state) => {
 	return state.usersData.users
 }
 
-// export const usersStateSelector = (state) => {
-// 	return usersState().filter(el => true)
-// }
-
 export const usersStateSelector = createSelector(usersState, (users) => {
 	return users.filter( el => true)
 })

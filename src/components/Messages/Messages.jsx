@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Messages.module.css";
-import Companion from "./Companion/Companion_Class";
-import Dialogs from "./Dialogs/DialogsContainer";
+import Companion from "./Companion/Companion";
+import Dialogs from "./Dialogs/Dialogs";
 import {MessagesReduxForm} from "./MessagesForm/MessagesForm";
 
 const Messages = (props) => {
@@ -10,22 +10,24 @@ const Messages = (props) => {
 
 	return (
 		<div className={s.messages}>
-			<div className={s.companion}>
-				{companionElements}
+			<div className={s.companion_element}>
+				<ul>
+					{companionElements}
+				</ul>
 			</div>
 			<div className={s.dialogs}>
-				{messageElements}
-			</div>
-			<div className={s.messagesAdd}>
-				<MessagesReduxForm onSubmit={props.addMessagesForm}
-													 addMessagesForm={props.addMessagesForm}
-													 // onTextareaChangesInMessages={props.onTextareaChangesInMessages}
-													 // currentDialogsData={props.currentDialogsData}
-													 // onAddMessages={props.onAddMessages}
-				/>
+				<div className={s.message_element}>
+					<div className={s.messages_form}>
+						<MessagesReduxForm onSubmit={props.addMessagesForm}
+															 addMessagesForm={props.addMessagesForm}
+						/>
+					{messageElements}
+					</div>
+				</div>
 			</div>
 		</div>
 	)
 }
+
 
 export default Messages

@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPost} from "../../../redux/Reducers/Profile_reducer";
+import {addPost, resetForm} from "../../../redux/Reducers/Profile_reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
@@ -7,22 +7,10 @@ class MyPostContainer extends React.Component {
 	constructor(props) {
 		super(props);
 	}
-
-	// newPostElements = React.createRef();
-	// onTextareaChanges = () => {
-	// 	this.props.textareaChanges(this.newPostElements.current.value);
-	// }
-	// onAddPost = () => {
-	// 	this.props.addPost();
-	// }
-
 	render() {
 		return <MyPosts posts={this.props.posts}
 										addPost={this.props.addPost}
-			// newPostElements={this.newPostElements}
-			// currentText={this.props.currentText}
-			// onTextareaChanges={this.onTextareaChanges}
-			// onAddPost={this.onAddPost}
+										resetForm={this.props.resetForm}
 		/>
 	}
 }
@@ -34,5 +22,5 @@ let mapStateToProps = (state) => {												// благодаря 'mapStateToP
 	}
 };
 
-export default connect(mapStateToProps, {addPost})(MyPostContainer)
+export default connect(mapStateToProps, {addPost,resetForm})(MyPostContainer)
 

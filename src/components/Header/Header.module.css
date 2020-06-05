@@ -1,15 +1,18 @@
 .header {
     grid-area: h;
     background-color: whitesmoke;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
 }
-.header_img {
-    width: 50px;
-}
-.auth_small {
-    margin: 1% 3.5% auto auto;
-    text-align: right;
-}
-.auth_small a {
-    text-decoration: none;
 
-}
+
+
+/*.auth_small {*/
+/*    margin: 1% 3.5% auto auto;*/
+/*    text-align: right;*/
+/*}*/
+/*.auth_small a {*/
+/*    text-decoration: none;*/
+
+/*}*/

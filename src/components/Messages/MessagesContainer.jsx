@@ -3,7 +3,7 @@ import Messages from "./Messages";
 import {connect} from "react-redux";
 import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
 import {compose} from "redux";
-import {addMessages} from "../../redux/Reducers/Messages_reducer";
+import {addMessages, resetAddMessages} from "../../redux/Reducers/Messages_reducer";
 
 
 class MessagesContainer extends React.Component {
@@ -14,6 +14,7 @@ class MessagesContainer extends React.Component {
 	message = this.props.dialogsData.message
 	addMessagesForm = (values) => {
 		this.props.addMessages(values.message)
+		this.props.resetAddMessages('messages')
 	}
 
 	render() {
@@ -21,6 +22,7 @@ class MessagesContainer extends React.Component {
 										 addMessagesForm={this.addMessagesForm}
 										 dialogsData={this.props.dialogsData}
 										 isAuth={this.props.isAuth}
+
 		/>
 	}
 }
@@ -34,7 +36,7 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-	(connect(mapStateToProps, {addMessages})),
+	(connect(mapStateToProps, {addMessages, resetAddMessages})),
 	authRedirectComponent
 )(MessagesContainer)
 

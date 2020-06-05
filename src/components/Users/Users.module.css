@@ -19,10 +19,10 @@
 .users_div {
 	border: 2px solid whitesmoke;
 }
-span {
-	margin-left: 10px;
-	text-align: center;
-}
+/*span {*/
+/*	margin-left: 10px;*/
+/*	text-align: center;*/
+/*}*/
 
 .getUsers {
 	margin-top: 30px;

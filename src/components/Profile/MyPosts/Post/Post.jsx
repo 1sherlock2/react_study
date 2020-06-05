@@ -1,16 +1,13 @@
 import React from 'react';
-import s from './Post.module.css';
+import imagePhoto from "../../../../img/avatar1.jpg"
 
 const Post = (props) => {
-
   return (
-    <div className={s.item}>
-      <img src={props.photo} />
-        {props.message}
-      <div className={s.item_like}>
-      <span>like {props.likesCount}</span>
-      </div>
-    </div>
+    <li className='collection-item avatar'>
+      <img className='circle' src={props.photo !== null ? props.photo : imagePhoto } />
+      <span className='title'>{props.message}</span>
+      <p>like: {props.likesCount}</p>
+    </li>
   )
 }
 

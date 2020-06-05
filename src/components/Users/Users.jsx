@@ -1,8 +1,7 @@
 import React from "react";
 import s from "./Users.module.css";
-import userPhoto from "../../img/apa6.jpg";
+import userPhoto from "../../img/avatar2.jpg";
 import {NavLink} from "react-router-dom";
-import {followThunk, unFollowThunk} from "../../redux/Reducers/Users_reducer";
 
 
 const Users = (props) => {
@@ -25,10 +24,10 @@ const Users = (props) => {
 						<span className={s.users_span}>
 							{(el.followed === false)
 								? <button disabled={props.isFollowingProgress.some(id => id === el.id)} onClick={() => {
-									followThunk(el.id)
+									props.followThunk(el.id)
 								}}> Follow </button>
 								: <button disabled={props.isFollowingProgress.some(id => id === el.id)} onClick={() => {
-									unFollowThunk(el.id)
+									props.unFollowThunk(el.id)
 								}}> Unfollow </button>
 							}
 						</span>

@@ -1,17 +1,25 @@
 import React from "react";
-import s from "../Messages.module.css";
 import {Field, reduxForm} from "redux-form";
-
+import s from "../Messages.module.css"
+import {Textarea} from "../../Common/FromControls/Textarea/Textarea";
 
 const MessagesForm = (props) => {
 	return (
-		<form onSubmit={props.handleSubmit}>
-			<Field component={'textarea'} name={'message'}
-				// value={props.currentDialogsData}
-				// onChange={props.onTextareaChangesInMessages}
-			/>
-			<button> Add</button>
-		</form>
+		<div className='row'>
+			<form className='col s12' onSubmit={props.handleSubmit}>
+				<div className='row'>
+					<div className='input-field col s1'>
+						<Field id='textarea1' className='materialize-textarea' component={Textarea} name={'message'}/>
+						<label htmlFor="textarea1">Message</label>
+						<div className={s.messagesFromButton}>
+							<button className="btn waves-effect waves-light" type="submit" name="action"> Send
+								<i className="material-icons right"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
 	)
 }
 

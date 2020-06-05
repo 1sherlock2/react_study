@@ -1,51 +1,60 @@
+/*.nav {*/
+/*    grid-area: n;*/
+/*    background-color: white;*/
+/*}*/
+/*.nav a {*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*.nav.active {*/
+/*    background: gold;*/
+/*}*/
+/*.item {*/
+/*    align-content: center;*/
+/*    width: 80%;*/
+/*    height: 40px;*/
+/*    text-align: center;*/
+/*    border-radius: 12.5%;*/
+/*    margin: 20px auto;*/
+/*    color: whitesmoke;*/
+/*    padding-top: 7.5px;*/
+/*    background: #6495ed;*/
+/*}*/
+
+/*!*.sidebarFriend {*!*/
+/*!*    margin-top: 30px;*!*/
+/*!*    grid-area: n;*!*/
+/*!*    display: grid;*!*/
+/*!*    grid-template-columns: 1fr 1fr 1fr;*!*/
+/*!*    grid-template-rows: auto;*!*/
+/*!*    grid-gap: 10px;*!*/
+/*!*    margin-left: 20px;*!*/
+/*!*}*!*/
+/*!*friend a {*!*/
+/*!*    width: 100%;*!*/
+/*!*    height: 100%;*!*/
+/*!*    text-decoration: none;*!*/
+/*!*}*!*/
+
+/*!*.friend  img {*!*/
+/*!*    text-align: center;*!*/
+/*!*    margin: 0 auto;*!*/
+/*!*    width: 50px;*!*/
+/*!*    height:50px;*!*/
+/*!*}*!*/
+/*!*.friend p {*!*/
+/*!*    margin:0 auto;*!*/
+/*!*    text-align:center;*!*/
+/*!*    font-size: 12px;*!*/
+/*!*    color: dodgerblue;*!*/
+/*!*    font-family: Dingbats;*!*/
+/*!*}*!*/
+/* ===========================================*/
+
 .nav {
-    grid-area: n;
-    background-color: white;
-}
-.nav a {
-    text-decoration: none;
+	position: fixed;
+	margin: 5% auto auto auto;
 }
 
-.nav.active {
-    background: gold;
-}
-.item {
-    align-content: center;
-    width: 80%;
-    height: 40px;
-    text-align: center;
-    border-radius: 12.5%;
-    margin: 20px auto;
-    color: whitesmoke;
-    padding-top: 7.5px;
-    background: #6495ed;
-}
 
-.sidebarFriend {
-    margin-top: 30px;
-    grid-area: n;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-gap: 10px;
-    margin-left: 20px;
-}
-friend a {
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-}
 
-.friend  img {
-    text-align: center;
-    margin: 0 auto;
-    width: 50px;
-    height:50px;
-}
-.friend p {
-    margin:0 auto;
-    text-align:center;
-    font-size: 12px;
-    color: dodgerblue;
-    font-family: Dingbats;
-}

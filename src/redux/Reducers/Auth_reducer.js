@@ -48,7 +48,7 @@ export const authThunk = () => (dispatch) => {
 
 export const loginThunk = (email, password, rememberMe) => (dispatch) => {
 	authAPI.loginFromServer(email, password, rememberMe = false).then(response => {
-		if (response.resultCode === 0) {
+		if (response.data.resultCode === 0) {
 			dispatch(authThunk())
 		} else {
 			let message = response.messages.length > 0 ? response.messages[0] : "Some error";			// при невыполнении 'resultCode' должны высветить сообщения об ошибке, (текс сообщения об ошибке берем из сервера (messages))
