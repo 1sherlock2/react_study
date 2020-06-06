@@ -8,10 +8,12 @@ const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
+
 let initialState = {
 	users: [],
 	pageSize: 10,
-	totalCount: 0,
+	totalCount: null,
+	pageNeighbours: 5,
 	currentPage: 1,
 	isFetching: false,
 	isFollowingProgress: [],
@@ -72,10 +74,10 @@ export const toggleIsFollowingProgress = (isFollowingProgress, userId) => ({
 
 
 export const getUsersThunk = (currentPage, pageSize) => async (dispatch) => {
-	let apiMetods = userAPI.getUsers.bind(userAPI)																		// можно и без bind, но для предотвращения возникновения ошибок привязываем наш 'action' к данному запросу из сервера
+	let apiMethods = userAPI.getUsers.bind(userAPI)																		// можно и без bind, но для предотвращения возникновения ошибок привязываем наш 'action' к данному запросу из сервера
 	dispatch(toggleIsFetching(true))
 	dispatch(changeCurrentPage(currentPage))
-	let response = await apiMetods(currentPage, pageSize)
+	let response = await apiMethods(currentPage, pageSize)
 	dispatch(toggleIsFetching(false))
 	dispatch(setUsers(response.items))
 	dispatch(setTotalUsersCount(response.totalCount))

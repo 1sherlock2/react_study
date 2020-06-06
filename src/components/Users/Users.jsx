@@ -2,53 +2,38 @@ import React from "react";
 import s from "./Users.module.css";
 import userPhoto from "../../img/avatar2.jpg";
 import {NavLink} from "react-router-dom";
+import Paginator from "../Common/Paginator/Pagitanor";
 
 
 const Users = (props) => {
-	let pageCount = Math.ceil(props.totalCount / props.pageSize);
-	let pages = [];
-	for (let i = 1; i <= pageCount; i++) {
-		pages.push(i);
-	}
 	return (
-		<div className={s.users}>
-			<div className={s.cursor_pointer}>
-				{pages.map(el => {
-					return <span onClick={(e) => props.onChangePages(el)}
-											 className={props.currentPage === el ? s.page_selected : null}> {el} </span>
-				})}
+		<div>
+			<div>
+				<Paginator totalCount={props.totalCount} currentPage={props.currentPage} pageSize={props.pageSize} onChangePages={props.onChangePages}/>
 			</div>
-			{props.users.map((el) =>
-				<div className={s.users_items} key={el.id}>
-					<div className={s.users_div}>
-						<span className={s.users_span}>
-							{(el.followed === false)
-								? <button disabled={props.isFollowingProgress.some(id => id === el.id)} onClick={() => {
-									props.followThunk(el.id)
-								}}> Follow </button>
-								: <button disabled={props.isFollowingProgress.some(id => id === el.id)} onClick={() => {
-									props.unFollowThunk(el.id)
-								}}> Unfollow </button>
-							}
-						</span>
-						<span className={s.users_span}>
+			<div>
+				{props.users.map((el) =>
+					<div className={s.users_items} key={el.id}>
+						<ul className='collection'>
+						<li className='collection-item avatar'>
 							<NavLink to={`/profile/${el.id}`}>
-								<img className={s.users_span_img} src={el.photos.small != null ? el.photos.small : userPhoto}/>
+								<img className='circle' src={el.photos.small != null ? el.photos.small : userPhoto}/>
 							</NavLink>
-							</span>
+							<span className='title'> {el.name} </span>
+							<p> {el.uniqueUrlName} </p>
+							{(el.followed === false)
+								? <NavLink to='#'  className='secondary-content' disabled={props.isFollowingProgress.some(id => id === el.id)} onClick={() => {
+									props.followThunk(el.id)
+								}}><i className="material-icons"> control_point </i></NavLink>
+								: <NavLink to='#' className='secondary-content' disabled={props.isFollowingProgress.some(id => id === el.id)} onClick={() => {
+									props.unFollowThunk(el.id)
+								}}><i className="material-icons">  grade </i></NavLink>
+							}
+						</li>
+						</ul>
 					</div>
-					<div className={s.users_div}>
-						<span className={s.users_span}>{el.name}</span>
-						<span className={s.users_span}>{}</span>
-					</div>
-					<div className={s.users_div}>
-						<span className={s.users_span}>{}</span>
-						<span className={s.users_span}>{}</span>
-						<br></br>
-						<span className={s.users_span}>{}</span>
-					</div>
-				</div>
-			)}
+				)}
+			</div>
 		</div>
 	)
 }
