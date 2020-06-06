@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "14a1a0246c182ed6fc88c715b39b983e",
+    "revision": "b5ceb385423b667fdc5b5e132131b081",
     "url": "/1sherlock2/react_study/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/1sherlock2/react_study/static/css/10.0ab0ac3b.chunk.css"
   },
   {
-    "revision": "87ae89543968b928ecb8",
+    "revision": "e0197d6d9e1c6f604734",
     "url": "/1sherlock2/react_study/static/css/3.d5dd858c.chunk.css"
   },
   {
@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/1sherlock2/react_study/static/css/5.8be9d347.chunk.css"
   },
   {
-    "revision": "ee69a4fa5192bf451900",
+    "revision": "54ac0df7bf800f9d378e",
     "url": "/1sherlock2/react_study/static/css/6.30ffefef.chunk.css"
   },
   {
@@ -28,7 +28,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/1sherlock2/react_study/static/css/7.4dd2c8f2.chunk.css"
   },
   {
-    "revision": "61a6e6710bcc5f5505b3",
+    "revision": "15b404d75a54825c0e9a",
     "url": "/1sherlock2/react_study/static/css/8.45245701.chunk.css"
   },
   {
@@ -36,7 +36,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/1sherlock2/react_study/static/css/9.2b283795.chunk.css"
   },
   {
-    "revision": "ee5d868b70824fe74d9d",
+    "revision": "17b823ccc29b23c61946",
     "url": "/1sherlock2/react_study/static/css/main.898a65cc.chunk.css"
   },
   {
@@ -48,12 +48,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/1sherlock2/react_study/static/js/10.0947d566.chunk.js"
   },
   {
-    "revision": "87ae89543968b928ecb8",
-    "url": "/1sherlock2/react_study/static/js/3.8a7c46bb.chunk.js"
+    "revision": "e0197d6d9e1c6f604734",
+    "url": "/1sherlock2/react_study/static/js/3.47ab8b76.chunk.js"
   },
   {
     "revision": "b013b7cd7a2da92c16a2d9932cfeb76c",
-    "url": "/1sherlock2/react_study/static/js/3.8a7c46bb.chunk.js.LICENSE.txt"
+    "url": "/1sherlock2/react_study/static/js/3.47ab8b76.chunk.js.LICENSE.txt"
   },
   {
     "revision": "cfef48f753c5123270c6",
@@ -64,28 +64,28 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/1sherlock2/react_study/static/js/5.f4365a27.chunk.js"
   },
   {
-    "revision": "ee69a4fa5192bf451900",
-    "url": "/1sherlock2/react_study/static/js/6.f470daee.chunk.js"
+    "revision": "54ac0df7bf800f9d378e",
+    "url": "/1sherlock2/react_study/static/js/6.20887810.chunk.js"
   },
   {
     "revision": "a938efde8058adac35b0",
     "url": "/1sherlock2/react_study/static/js/7.45794186.chunk.js"
   },
   {
-    "revision": "61a6e6710bcc5f5505b3",
-    "url": "/1sherlock2/react_study/static/js/8.1fdf7f22.chunk.js"
+    "revision": "15b404d75a54825c0e9a",
+    "url": "/1sherlock2/react_study/static/js/8.f66297d0.chunk.js"
   },
   {
     "revision": "29bb14a91af0796b4db7",
     "url": "/1sherlock2/react_study/static/js/9.bbee1d11.chunk.js"
   },
   {
-    "revision": "ee5d868b70824fe74d9d",
-    "url": "/1sherlock2/react_study/static/js/main.23e35d0d.chunk.js"
+    "revision": "17b823ccc29b23c61946",
+    "url": "/1sherlock2/react_study/static/js/main.64ffad28.chunk.js"
   },
   {
-    "revision": "1a14fb5e9b6446845e1c",
-    "url": "/1sherlock2/react_study/static/js/runtime-main.228786c6.js"
+    "revision": "00391c5dfbe839e6d0e7",
+    "url": "/1sherlock2/react_study/static/js/runtime-main.66a90d84.js"
   },
   {
     "revision": "ccf904bee59ce0700c216aec98c4058e",
