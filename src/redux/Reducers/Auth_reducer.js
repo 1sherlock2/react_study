@@ -37,32 +37,29 @@ export const setUserData = (userId, email, login, isAuth) => ({
 	payLoad: {email: email, userId: userId, login: login, isAuth: isAuth,}
 });
 
-export const authThunk = () => (dispatch) => {
-	authAPI.usersAuthFromServer().then(response => {
-		if (response.resultCode === 0) {
-			let {id, email, login} = response.data;															// !!! осторожно с порядком присваивания, оно должно совпадать с порядком что присутствует на сервере
-			dispatch(setUserData(id, email, login, true));
-		}
-	})
+export const authThunk = () => async (dispatch) => {
+	let response = await authAPI.usersAuthFromServer()
+	if (response.resultCode === 0) {
+		let {id, email, login} = response.data;															// !!! осторожно с порядком присваивания, оно должно совпадать с порядком что присутствует на сервере
+		dispatch(setUserData(id, email, login, true));
+	}
 };
 
-export const loginThunk = (email, password, rememberMe) => (dispatch) => {
-	authAPI.loginFromServer(email, password, rememberMe = false).then(response => {
-		if (response.data.resultCode === 0) {
-			dispatch(authThunk())
-		} else {
-			let message = response.messages.length > 0 ? response.messages[0] : "Some error";			// при невыполнении 'resultCode' должны высветить сообщения об ошибке, (текс сообщения об ошибке берем из сервера (messages))
-			dispatch(stopSubmit('login', {_error: message}))  																	  // ! Важная строка для понимания работы возврата функции 'dispatch'. formSubmit берем из библиотеки 'redux-form'
-		}
-	})
+export const loginThunk = (email, password, rememberMe) => async (dispatch) => {
+	let response = await authAPI.loginFromServer(email, password, rememberMe = false)
+	if (response.data.resultCode === 0) {
+		dispatch(authThunk())
+	} else {
+		let message = response.messages.length > 0 ? response.messages[0] : "Some error";			// при невыполнении 'resultCode' должны высветить сообщения об ошибке, (текс сообщения об ошибке берем из сервера (messages))
+		dispatch(stopSubmit('login', {_error: message}))  																	  // ! Важная строка для понимания работы возврата функции 'dispatch'. formSubmit берем из библиотеки 'redux-form'
+	}
 }
 
-export const logoutThunk = () => (dispatch) => {
-	authAPI.logoutFromServer().then(response => {
-		if (response.resultCode === 0) {
-			dispatch(setUserData(null, null, null, false));
-		}
-	})
+export const logoutThunk = () => async (dispatch) => {
+	let response = await authAPI.logoutFromServer()
+	if (response.resultCode === 0) {
+		dispatch(setUserData(null, null, null, false));
+	}
 }
 
 
