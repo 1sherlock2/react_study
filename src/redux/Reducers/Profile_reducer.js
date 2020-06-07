@@ -1,11 +1,13 @@
 import {profileAPI} from "../../API/API";
 import {reset} from 'redux-form';
 
+const CHANGE_PHOTO = 'CHANGE_PHOTO';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 const DELETE_POST = 'DELETE_POST';
+
 
 let initialState = {
 	posts: [
@@ -45,6 +47,11 @@ const profileReducer = (state = initialState, action) => {
 				...state,
 				posts: state.posts.filter(el => el.id !== action.postId)
 			}
+			case CHANGE_PHOTO:
+				return {
+					...state,
+					profile: {...state.profile, photos:  action.image}
+				}
 		default:
 			return state;
 	}
@@ -56,6 +63,7 @@ export const addPost = (post) => ({type: ADD_POST, post});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile});
 export const toggleIsFetchingLoad = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching: isFetching});
 export const resetForm = (myPost) => (reset(myPost));
+export const updateImage = (photo) => ({type: CHANGE_PHOTO, image: photo})
 
 export const profileServerThunk = (userId) => async (dispatch) => {
 	dispatch(toggleIsFetchingLoad(true));
@@ -72,6 +80,13 @@ export const updateUserStatusThunk = (status) => async (dispatch) => {
 	let response = await profileAPI.updateStatus(status)
 	if (response.data.resultCode === 0) {
 		dispatch(setUserStatus(status));
+	}
+}
+
+export const changeImageThunk = (file) => async (dispatch) => {
+	let response = await profileAPI.changeImageFromServer(file)
+	if (response.data.resultCode === 0) {
+		dispatch(updateImage(response.data.data.photos));
 	}
 }
 
