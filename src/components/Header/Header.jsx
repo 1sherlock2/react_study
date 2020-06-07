@@ -10,25 +10,15 @@ const Header = (props) => {
 					?
 					<div className="nav-wrapper">
 						<div className="col s12">
-							<NavLink to="/profile" className="breadcrumb"> {props.login} </NavLink>
-						<button className='btn logout' onClick={props.logoutThunk}> Logout </button>
+							<NavLink to="/profile" className="breadcrumb"> {props.login}
+							<button className='btn logout' onClick={props.logoutThunk}><i className="material-icons"> exit_to_app </i></button>
+							</NavLink>
 						</div>
 					</div>
-					: <NavLink className="waves-effect waves-light btn logout" to={'/login'}><i className="material-icons left"> Login </i> </NavLink>}
+					: <NavLink className="waves-effect waves-light btn logout" to={'/login'}><button className='btn logout'><i className="material-icons"> input </i></button></NavLink>}
 			</nav>
 		</header>
 	)
 }
-// <a className="waves-effect waves-light btn"><i className="material-icons left">cloud</i>button</a>
-
-// <nav>
-// 	<div className="nav-wrapper">
-// 		<div className="col s12">
-// 			<a href="#!" className="breadcrumb">First</a>
-// 			<a href="#!" className="breadcrumb">Second</a>
-// 			<a href="#!" className="breadcrumb">Third</a>
-// 		</div>
-// 	</div>
-// </nav>
 
 export default Header;
