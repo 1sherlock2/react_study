@@ -1,5 +1,5 @@
 import {profileAPI} from "../../API/API";
-import {reset} from 'redux-form';
+import {reset, stopSubmit} from 'redux-form';
 
 const CHANGE_PHOTO = 'CHANGE_PHOTO';
 const ADD_POST = 'ADD-POST';
@@ -7,7 +7,6 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 const DELETE_POST = 'DELETE_POST';
-
 
 let initialState = {
 	posts: [
@@ -47,29 +46,30 @@ const profileReducer = (state = initialState, action) => {
 				...state,
 				posts: state.posts.filter(el => el.id !== action.postId)
 			}
-			case CHANGE_PHOTO:
-				return {
-					...state,
-					profile: {...state.profile, photos:  action.image}
-				}
+		case CHANGE_PHOTO:
+			return {
+				...state,
+				profile: {...state.profile, photos: action.image}
+			}
 		default:
 			return state;
 	}
 }
-export const deletePost = (id) => ({type: DELETE_POST, postId: id})
 
+export const setUserProfile = (profileId) => ({type: SET_USER_PROFILE, profile: profileId});
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status: status})
 export const addPost = (post) => ({type: ADD_POST, post});
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile});
+export const deletePost = (id) => ({type: DELETE_POST, postId: id})
 export const toggleIsFetchingLoad = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching: isFetching});
 export const resetForm = (myPost) => (reset(myPost));
 export const updateImage = (photo) => ({type: CHANGE_PHOTO, image: photo})
+
 
 export const profileServerThunk = (userId) => async (dispatch) => {
 	dispatch(toggleIsFetchingLoad(true));
 	let response = await profileAPI.profileFromServer(userId)
 	dispatch(toggleIsFetchingLoad(false));
-	dispatch(setUserProfile(response))
+	dispatch(setUserProfile(response.data))
 }
 
 export const setUserStatusThunk = (userId) => async (dispatch) => {
@@ -89,5 +89,15 @@ export const changeImageThunk = (file) => async (dispatch) => {
 		dispatch(updateImage(response.data.data.photos));
 	}
 }
+export const saveProfileInformationThunk = (formData) => async (dispatch, getState) => {
+	const userId = getState().authData.userId
+	const response = await profileAPI.changeProfileInformationFromServer(formData);
 
+	if (response.data.resultCode === 0) {
+		dispatch(profileServerThunk(userId))
+	} else {
+		dispatch(stopSubmit('profileInfo', {_error: response.data.messages[0]}))
+		return Promise.reject( response.data.messages[0]);
+	}
+}
 export default profileReducer;

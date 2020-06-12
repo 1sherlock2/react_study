@@ -4,7 +4,7 @@ import {MyPostsReduxForm} from "./PostForm/PostForm";
 import {reset} from 'redux-form';
 
 const MyPosts = props => {
-	let messagesData = [...props.posts].reverse().map(el => <Post photo={el.photo} message={el.message}
+	let messagesData = [...props.posts].reverse().map(el => <Post key={el.id} photo={el.photo} message={el.message}
 																																likesCount={el.likesCount}/>);
 	const addPostsForm = (values) => {
 		props.addPost(values.myPost)

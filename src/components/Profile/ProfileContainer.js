@@ -4,12 +4,12 @@ import {
 	setUserProfile,
 	setUserStatusThunk,
 	changeImageThunk,
-	toggleIsFetchingLoad, updateUserStatusThunk
+	toggleIsFetchingLoad, updateUserStatusThunk, saveProfileInformationThunk
 } from "../../redux/Reducers/Profile_reducer";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { authRedirectComponent } from "../../HOC/AuthRedirectComponent";
-import { compose } from "redux";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
+import {authRedirectComponent} from "../../HOC/AuthRedirectComponent";
+import {compose} from "redux";
 import Profile from './Profile';
 
 
@@ -38,13 +38,14 @@ class ProfileContainer extends React.Component {
 		}
 	}
 
-
 	render() {
 		return <Profile isOwnerProfile={!this.props.match.params.userId}
-			{...this.props}
-			changeImageThunk={this.props.changeImageThunk}
-			profile={this.props.profile} status={this.props.status}
-			updateUserStatusThunk={this.props.updateUserStatusThunk} />
+										saveProfileInformationThunk={this.props.saveProfileInformationThunk}
+										{...this.props}
+										changeImageThunk={this.props.changeImageThunk}
+										profile={this.props.profile}
+										status={this.props.status}
+										updateUserStatusThunk={this.props.updateUserStatusThunk}/>
 	}
 }
 
@@ -64,6 +65,7 @@ export default compose(
 		toggleIsFetchingLoad,
 		profileServerThunk,
 		updateUserStatusThunk,
-		changeImageThunk
+		changeImageThunk,
+		saveProfileInformationThunk
 	}), withRouter, authRedirectComponent,
 )(ProfileContainer)

@@ -11,6 +11,7 @@ import store from "./redux/redux_store/redux_store";
 import {SuspenseComponent} from "./components/Common/SuspenseComponent/SuspenseComponent";
 import HeaderContainer from "./components/Header/HeaderContainer";
 
+
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 const MessagesContainer = React.lazy(() => import('./components/Messages/MessagesContainer'))
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'))
@@ -68,5 +69,6 @@ let MainApp = (props) => {
 		</HashRouter>
 	)
 }
+window.store = store
 
 export default MainApp;

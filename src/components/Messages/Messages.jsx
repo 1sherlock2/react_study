@@ -5,8 +5,8 @@ import Dialogs from "./Dialogs/Dialogs";
 import {MessagesReduxForm} from "./MessagesForm/MessagesForm";
 
 const Messages = (props) => {
-	let companionElements = props.companionsData.map((el) => <Companion id={el.id} name={el.name}/>)
-	let messageElements = props.dialogsData.map((el) => <Dialogs message={el.message}/>)
+	let companionElements = props.companionsData.map((el) => <Companion key={el.id} id={el.id} name={el.name}/>)
+	let messageElements = props.dialogsData.map((el) => <Dialogs key={el.id} message={el.message}/>)
 
 	return (
 		<div className={s.messages}>

@@ -10,6 +10,7 @@ import style from "../../Common/FromControls/FormControl.module.css"
 
 let maxLength20 = maxLengthCreator(30)
 let minLength5 = minLengthCreator(5)
+
 const LoginForm = React.memo(props => {
 	return (
 		<div className={s.login_form}>
