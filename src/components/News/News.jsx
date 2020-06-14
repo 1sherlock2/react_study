@@ -11,12 +11,14 @@ const News = React.memo(props => {
 	return (
 		<div className={s.news}>
 			<div className={s.h1}>
-				<h1> News today </h1>
+				<blockquote style={{fontSize: '30px'}}>
+					News today
+				</blockquote>
 			</div>
-			<div className={s.action}>
+			<div>
 				<NewsPostReduxFrom onSubmit={addNewsForm}/>
 			</div>
-			<div className={s.news_posts}>
+			<div>
 				{mapNews_post}
 			</div>
 		</div>

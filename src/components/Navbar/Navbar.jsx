@@ -4,8 +4,7 @@ import {NavLink} from "react-router-dom";
 
 const Navbar = (props) => {
 	return (
-		<div className={s.nav}>
-		<nav className='collection' >
+		<nav className='collection' style={{height: "auto"}} >
 			<NavLink to="/profile" className='collection-item'>
 				<div className={s.item}>
 					Profile
@@ -37,7 +36,6 @@ const Navbar = (props) => {
 				</div>
 			</NavLink>
 		</nav>
-		</div>
 	)
 }
 

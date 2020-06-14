@@ -8,7 +8,7 @@ const MessagesForm = (props) => {
 		<div className='row'>
 			<form className='col s12' onSubmit={props.handleSubmit}>
 				<div className='row'>
-					<div className='input-field col s1'>
+					<div className='input-field col s12'>
 						<Field id='textarea1' className='materialize-textarea' component={Textarea} name={'message'}/>
 						<label htmlFor="textarea1">Message</label>
 						<div className={s.messagesFromButton}>

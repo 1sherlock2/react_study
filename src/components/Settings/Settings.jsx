@@ -23,8 +23,10 @@ const Settings = (props => {
 // 	}
 //
 	return (
-		<div className={s.settings}>
-			<h3> Settings </h3>
+		<div style={{fontSize: '30px'}}>
+			<blockquote>
+				Settings
+			</blockquote>
 			{/*<div>*/}
 			{/*	Change your name:*/}
 			{/*	{!editProfileFullName ?*/}

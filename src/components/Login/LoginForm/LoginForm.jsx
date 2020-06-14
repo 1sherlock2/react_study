@@ -13,7 +13,7 @@ let minLength5 = minLengthCreator(5)
 
 const LoginForm = React.memo(props => {
 	return (
-		<div className={s.login_form}>
+		<div className='col s8'>
 			<form onSubmit={props.handleSubmit}> {/* (onSubmit (handleSubmit) ) */}
 				<div>
 					<Field component={Input} name={'email'} validate={[requiredFiled, maxLength20]} type="text"

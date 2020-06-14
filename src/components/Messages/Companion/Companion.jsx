@@ -10,7 +10,7 @@ class Companion extends PureComponent {
 
 	render() {
 		return (
-			<div className='collection'>
+			<div className='collection' style={{textAlign: 'center'}}>
 				<NavLink to={this.path} className="collection-item">
 					{this.props.name}
 				</NavLink>

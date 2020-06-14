@@ -5,7 +5,7 @@ export const Textarea = (props) => {
 	let {input, meta, ...restProps} = props
 	return (
 		<FormControl {...props}>
-			<textarea {...input} {...restProps}/>
+			<textarea className='materialize-textarea' {...input} {...restProps}/>
 		</FormControl>
 	)
 }

@@ -31,12 +31,14 @@ class App extends React.Component {
 		} else {
 			return (
 				<div className='row'>
+					<div className='col s12'>
 						<HeaderContainer/>
-						<div className='col s3'>
-							<Navbar/>
-						</div>
-					<Suspense fallback={<SuspenseComponent />}>
-						<div className="col s9">
+					</div>
+					<div className='col s2' style={{textAlign: 'center',position: 'static', top: '30%'}}>
+						<Navbar/>
+					</div>
+					<div className='col s10'>
+						<Suspense fallback={<SuspenseComponent/>}>
 							<Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
 							<Route path="/messages" render={() => <MessagesContainer/>}/>
 							<Route path="/users" render={() => <UsersContainer/>}/>
@@ -44,10 +46,9 @@ class App extends React.Component {
 							<Route path="/music" render={() => <MusicContainer/>}/>
 							<Route path="/settings" render={() => <SettingsContainer/>}/>
 							<Route path="/login" render={() => <Login/>}/>
-						</div>
-					</Suspense>
+						</Suspense>
+					</div>
 				</div>
-
 			)
 		}
 	}
