@@ -7,7 +7,7 @@ import {Redirect} from "react-router-dom";
 
 const Login = (props) => {
 	let onSubmit = (formData) => {
-		props.loginThunk(formData.email, formData.password, formData.rememberMe) 						//можно применить реструктуризацию
+		props.loginThunk(formData.email, formData.password, formData.rememberMe, formData.captcha) 						//можно применить реструктуризацию
 	}
 	if (props.isAuth === true) {
 		return <Redirect to={"/profile"}/>
@@ -15,7 +15,7 @@ const Login = (props) => {
 		return (
 			<div className={s.login}>
 				<h1> Login </h1>
-				<LoginReduxForm onSubmit={onSubmit}/>
+				<LoginReduxForm onSubmit={onSubmit} getCaptcha={props.getCaptcha}/>
 			</div>
 		)
 	}
@@ -24,6 +24,7 @@ const Login = (props) => {
 let mapStateToProps = (state) => {
 	return {
 		isAuth: state.authData.isAuth,
+		getCaptcha: state.authData.getCaptcha,
 	}
 }
 

@@ -53,12 +53,20 @@ export const authAPI = {
 			return response.data;
 		})
 	},
-	loginFromServer(email,password,rememberMe) {
-		return instance.post(`auth/login`, {email, password, rememberMe})
+	loginFromServer(email,password,rememberMe,captcha=null) {
+		return instance.post(`auth/login`, {email, password, rememberMe,captcha})
 	},
 	logoutFromServer() {
 		return instance.delete(`auth/login`).then(response => {
 			return response.data;
+		})
+	}
+}
+
+export const securityAPI = {
+	getCaptchFromServer() {
+		return instance.get('/security/get-captcha-url').then(response => {
+			return response.data
 		})
 	}
 }

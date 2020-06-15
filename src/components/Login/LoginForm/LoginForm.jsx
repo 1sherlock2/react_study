@@ -7,6 +7,8 @@ import {
 	requiredFiled
 } from "../../../Utils/Validator/Validator";
 import style from "../../Common/FromControls/FormControl.module.css"
+import {getCaptchaURL} from "../../../redux/Reducers/Auth_reducer";
+import {createField} from "../../Common/FromControls/CreateField/CreateField";
 
 let maxLength20 = maxLengthCreator(30)
 let minLength5 = minLengthCreator(5)
@@ -26,14 +28,23 @@ const LoginForm = React.memo(props => {
 				<div>
 					<Field component={'input'} name={'rememberMe'} type="checkbox"/>
 				</div>
-				{ props.error
-					? <div className={style.formSummaryError}>   {/* {props.error} -> свойство, которое присутствует в методе onSubmit у 'redux-form' */}
-							{props.error}
-						</div>
-					: null }
+				{props.error
+					? <div
+						className={style.formSummaryError}>   {/* {props.error} -> свойство, которое присутствует в методе onSubmit у 'redux-form' */}
+						{props.error}
+					</div>
+					: null}
 				<div>
-					<button className="btn waves-effect waves-light" type="submit" name="action"> Login </button>
+					<button className="btn waves-effect waves-light" type="submit" name="action"> Login</button>
 				</div>
+				{props.getCaptcha &&
+				<div>
+					<img src={props.getCaptcha}/>
+					<div>
+						{createField('add number from image', 'captcha', [requiredFiled], Input)}
+						<button className='btn'> Post captcha</button>
+					</div>
+				</div>}
 			</form>
 		</div>
 	)
