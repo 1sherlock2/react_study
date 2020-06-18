@@ -39,7 +39,12 @@ const LoginForm = React.memo(props => {
 				</div>
 				{props.getCaptcha &&
 				<div>
+					<div>
 					<img src={props.getCaptcha}/>
+						<button className='btn waves-effect waves-light' onClick={props.getCaptchaURL}> Change image
+							<i className="material-icons right"> autorenew </i>
+						</button>
+					</div>
 					<div>
 						{createField('add number from image', 'captcha', [requiredFiled], Input)}
 						<button className='btn'> Post captcha</button>

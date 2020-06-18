@@ -1,29 +1,29 @@
-import {authThunk} from "./Auth_reducer";
+import { authThunk } from './Auth_reducer';
 
 const INITIALIZE = 'INITIALIZE';
 
-let initialState = {
-	initialized: false,
+const initialState = {
+  initialized: false,
 };
 
-let appReducer = (state = initialState, action) => {
-	switch (action.type) {
-		case INITIALIZE:
-			return {
-			...state,
-				initialized: true,
-			}
-		default:
-			return state
-	}
+const appReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case INITIALIZE:
+      return {
+        ...state,
+        initialized: true,
+      };
+    default:
+      return state;
+  }
 };
 
-const initialized = () => ({type: INITIALIZE})
+const initialized = () => ({ type: INITIALIZE });
 
 export const initializedThunk = () => (dispatch) => {
-	let promise = dispatch(authThunk())
+  const promise = dispatch(authThunk());
 
-	Promise.all([promise]).then(() => {dispatch(initialized())})
-}
+  Promise.all([promise]).then(() => { dispatch(initialized()); });
+};
 
 export default appReducer;

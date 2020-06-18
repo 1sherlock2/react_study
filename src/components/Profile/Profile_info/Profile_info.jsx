@@ -31,8 +31,8 @@ const Profile_info = React.memo(props => {
 		<div className='row' style={{marginTop: '2.5%', marginLeft: '5%'}}>
 			<div className='col s4'>
 				<img style={{borderRadius: '10%', width: '90%'}}
-						 src={props.profile.photos.large !== null ? props.profile.photos.large : imagePhoto}/>
-				<ProfileStatusHook status={props.status} updateUserStatusThunk={props.updateUserStatusThunk}/>
+						 src={props.profile.photos.large !== null ? props.profile.photos.large : imagePhoto} />
+				<ProfileStatusHook status={props.status} updateUserStatusThunk={props.updateUserStatusThunk} isOwnerProfile={props.isOwnerProfile} />
 			</div>
 			<div className='col s8'>
 				{editMode ?

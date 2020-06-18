@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {HashRouter, Route, withRouter} from "react-router-dom";
+import { BrowserRouter, Route, withRouter, Switch, Redirect} from "react-router-dom";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializedThunk} from "./redux/Reducers/App_reducer";
@@ -21,9 +21,17 @@ const SettingsContainer = React.lazy(() => import('./components/Settings/Setting
 const Login = React.lazy(() => import('./components/Login/Login'))
 
 class App extends React.Component {
+
+	catchAllUnhandledErrors = (reason,promise) => {
+		alert( )
+	}
 	componentDidMount() {
 		this.props.initializedThunk()
+		// window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
 	}
+	// componentWillUnmount() {
+	// 	window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors)
+	// }
 
 	render() {
 		if (!this.props.initialized) {
@@ -39,13 +47,17 @@ class App extends React.Component {
 					</div>
 					<div className='col s10'>
 						<Suspense fallback={<SuspenseComponent/>}>
-							<Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
-							<Route path="/messages" render={() => <MessagesContainer/>}/>
-							<Route path="/users" render={() => <UsersContainer/>}/>
-							<Route path="/news" render={() => <NewsContainer/>}/>
-							<Route path="/music" render={() => <MusicContainer/>}/>
-							<Route path="/settings" render={() => <SettingsContainer/>}/>
-							<Route path="/login" render={() => <Login/>}/>
+							<Switch>
+								<Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
+								<Route exact path="/" render={() => <Redirect to='/profile' />} />
+								<Route path="/messages" render={() => <MessagesContainer/>}/>
+								<Route path="/users" render={() => <UsersContainer/>}/>
+								<Route path="/news" render={() => <NewsContainer/>}/>
+								<Route path="/music" render={() => <MusicContainer/>}/>
+								<Route path="/settings" render={() => <SettingsContainer/>}/>
+								<Route path="/login" render={() => <Login/>}/>
+								<Route patch="*" render={() => <div> 404 page not found</div>} />
+							</Switch>
 						</Suspense>
 					</div>
 				</div>
@@ -63,11 +75,11 @@ export let AppContainer = compose(withRouter, connect(mapStateToProps, {initiali
 
 let MainApp = (props) => {
 	return (
-		<HashRouter>
+		<BrowserRouter>
 			<Provider store={store}>
 				<AppContainer/>
 			</Provider>
-		</HashRouter>
+		</BrowserRouter>
 	)
 }
 window.store = store

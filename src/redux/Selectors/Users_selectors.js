@@ -1,34 +1,17 @@
-import {createSelector} from "reselect"
+import { createSelector } from 'reselect';
 
+export const usersState = (state) => state.usersData.users;
 
-export const usersState = (state) => {
-	return state.usersData.users
-}
+export const usersStateSelector = createSelector(usersState, (users) => users.filter((el) => true));
 
-export const usersStateSelector = createSelector(usersState, (users) => {
-	return users.filter( el => true)
-})
+export const pageSizeState = (state) => state.usersData.pageSize;
 
-export const pageSizeState = (state) => {
-	return state.usersData.pageSize
-}
+export const totalCountState = (state) => state.usersData.totalCount;
 
-export const totalCountState = (state) => {
-	return state.usersData.totalCount
-}
+export const currentPageState = (state) => state.usersData.currentPage;
 
-export const currentPageState = (state) => {
-	return state.usersData.currentPage
-}
+export const isFetchingState = (state) => state.usersData.isFetching;
 
-export const isFetchingState = (state) => {
-	return state.usersData.isFetching
-}
+export const isFollowingProgressState = (state) => state.usersData.isFollowingProgress;
 
-export const isFollowingProgressState = (state) => {
-	return state.usersData.isFollowingProgress
-}
-
-export const isAuthState = (state) => {
-	return state.authData.isAuth
-}
+export const isAuthState = (state) => state.authData.isAuth;
